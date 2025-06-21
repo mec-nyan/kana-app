@@ -16,9 +16,36 @@ top_info.appendChild(mode)
 const other_stuff = document.createElement("div")
 other_stuff.id = "other_stuff"
 other_stuff.className = "info"
-other_stuff.innerHTML = `<span>Other stuff will be here, i.e. a progress bar, score, etc. I still have yet to decide that. But I wanted to place a placeholder for now.`
+other_stuff.innerHTML = `<span>I may place some stats here.</span>`
 
 top_info.appendChild(other_stuff)
+
+const progress = document.createElement("div")
+progress.id = "progress"
+
+const progress_tag = document.createElement("span")
+progress_tag.className = "info"
+progress_tag.innerText = "Progress: "
+
+const bar = document.createElement("div")
+bar.id = "bar"
+const bar_inner = document.createElement("div")
+bar_inner.id = "inner"
+
+bar.appendChild(bar_inner)
+
+progress.appendChild(progress_tag)
+progress.appendChild(bar)
+
+top_info.appendChild(progress)
+
+const score = document.createElement("div")
+score.id = "score"
+score.className = "info"
+
+score.innerHTML = `<span>Score: ...</span>`
+
+top_info.appendChild(score)
 
 
 // At the center, we'll show the kana in a big font.
