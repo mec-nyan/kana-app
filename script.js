@@ -23,9 +23,9 @@ top_info.appendChild(other_stuff)
 const progress = document.createElement("div")
 progress.id = "progress"
 
-const progress_tag = document.createElement("span")
+const progress_tag = document.createElement("div")
 progress_tag.className = "info"
-progress_tag.innerText = "Progress: "
+progress_tag.innerHTML = "<span>Progress</span>"
 
 const bar = document.createElement("div")
 bar.id = "bar"
