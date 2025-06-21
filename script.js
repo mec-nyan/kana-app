@@ -25,7 +25,7 @@ progress.id = "progress"
 
 const progress_tag = document.createElement("div")
 progress_tag.className = "info"
-progress_tag.innerHTML = "<span>Progress</span>"
+progress_tag.innerHTML = "<span>Progress:&nbsp;<span class='perc'>18%</span></span>"
 
 const bar = document.createElement("div")
 bar.id = "bar"
