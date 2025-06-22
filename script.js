@@ -39,19 +39,33 @@ progress.appendChild(bar)
 
 top_info.appendChild(progress)
 
-const score = document.createElement("div")
-score.id = "score"
-score.className = "info"
+const score = 1000
 
-score.innerHTML = `<span>Score: ...</span>`
+const user_score = document.createElement("div")
+user_score.id = "score"
+user_score.className = "info"
 
-top_info.appendChild(score)
+user_score.innerHTML = `<span>Score: <span class='score'>${score}</span></span>`
 
+top_info.appendChild(user_score)
+
+const kana_map = [
+	{
+		name: "hg_a",
+		kanas: [
+			{ romaji: "a", hiragana: "あ" },
+			{ romaji: "i", hiragana: "い" },
+			{ romaji: "u", hiragana: "う" },
+			{ romaji: "e", hiragana: "え" },
+			{ romaji: "o", hiragana: "お" },
+		],
+	}
+]
 
 // At the center, we'll show the kana in a big font.
 const kana = document.createElement("div")
 kana.id = "kana"
-kana.innerText = "あ"
+kana.innerText = kana_map[0].kanas[3].hiragana
 
 // At the bottom, we'll place five "buttons" with the romaji that
 // correspond to the row of that kana.
