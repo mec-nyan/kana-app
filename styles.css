@@ -43,7 +43,7 @@ html, body {
 	align-items: baseline;
 }
 
-.perc {
+.perc, .score {
 	color: hsl(182, 30%, 50%);
 }
 
