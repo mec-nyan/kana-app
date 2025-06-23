@@ -81,6 +81,31 @@ for (let i = 0; i < romaji.length; i++) {
 	romaji_bar.appendChild(btn)
 }
 
+// Footer.
+const footer = document.createElement("div")
+footer.id = "footer"
+const footer_content = document.createElement("span")
+footer_content.classList.add("love")
+footer_content.innerText = "Made with 💖 by Nano"
+
+footer.appendChild(footer_content)
+
 root.appendChild(top_info)
 root.appendChild(kana)
 root.appendChild(romaji_bar)
+root.appendChild(footer)
+
+// Feedback for touched buttons.
+document.querySelectorAll('.romaji-button').forEach(btn => {
+	btn.addEventListener('touchstart', () => {
+		btn.classList.add('touched')
+	})
+
+	btn.addEventListener('touchend', () => {
+		btn.classList.remove('touched')
+	})
+
+	btn.addEventListener('touchcancel', () => {
+		btn.classList.remove('touched')
+	})
+})
