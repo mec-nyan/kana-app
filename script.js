@@ -59,6 +59,16 @@ const kana_map = [
 			{ romaji: "e", hiragana: "え" },
 			{ romaji: "o", hiragana: "お" },
 		],
+	},
+	{
+		name: "hg_k",
+		kanas: [
+			{ romaji: "ka", hiragana: "か" },
+			{ romaji: "ki", hiragana: "き" },
+			{ romaji: "ku", hiragana: "く" },
+			{ romaji: "ke", hiragana: "け" },
+			{ romaji: "ko", hiragana: "こ" },
+		]
 	}
 ]
 
@@ -86,7 +96,8 @@ const randomKana = (row, last) => {
 }
 
 const nextQuest = () => {
-	let row = kana_map[0].kanas
+	let row_index = Math.floor(score / 25)
+	let row = kana_map[row_index].kanas
 	let current_kana = randomKana(row, last_kana)
 	kana.textContent = current_kana.hiragana
 
