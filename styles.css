@@ -88,7 +88,7 @@ html, body {
 	grid-template-columns: repeat(5, 1fr);
 	gap: 0.8rem;
 	padding: 1rem;
-	margin-bottom: 4rem;
+	margin-bottom: 5%;
 }
 
 .romaji-button {
