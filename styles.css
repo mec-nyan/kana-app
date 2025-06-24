@@ -112,6 +112,10 @@ html, body {
 	transform: scale(1.25);
 }
 
+.romaji-button.ignored {
+	background: hsl(182, 10%, 24%);
+}
+
 #footer {
 	padding: 1rem;
 	color: hsl(243, 20%, 50%);

@@ -40,6 +40,7 @@ progress.appendChild(bar)
 top_info.appendChild(progress)
 
 let score = 0
+const round_items = 3
 
 const user_score = document.createElement("div")
 user_score.id = "score"
@@ -143,9 +144,9 @@ const kana_map = [
 		kanas: [
 			{ romaji: "wa", hiragana: "わ" },
 			{ romaji: "wi", hiragana: "ゐ" },
+			{ romaji: "n", hiragana: "ん" },
 			{ romaji: "we", hiragana: "ゑ" },
 			{ romaji: "wo", hiragana: "を" },
-			{ romaji: "n", hiragana: "ん" },
 		]
 	}
 ]
@@ -174,14 +175,14 @@ const randomKana = (row, last) => {
 }
 
 const nextQuest = () => {
-	let row_index = Math.floor(score / 5) + 6
-	let block = kana_map[row_index]
+	let row_index = Math.floor(score / round_items) + 7
+	let block = kana_map[row_index % kana_map.length]
 	let row = [...block.kanas]
 	let current_kana = randomKana(row, last_kana)
 	kana.textContent = current_kana.hiragana
 
 	if (block.name === "ya") {
-		let filler = { romaji: "", hiragana: "" }
+		let filler = { romaji: "", hiragana: "", ignore: true }
 		row = [row[0], filler, row[1], filler, row[2]]
 	}
 
@@ -190,18 +191,22 @@ const nextQuest = () => {
 		let btn = document.createElement("div")
 		btn.className = "romaji-button"
 		btn.innerText = k.romaji
-		btn.addEventListener("click", () => handleClick(k.romaji, current_kana))
-		btn.addEventListener('touchstart', () => {
-			btn.classList.add('touched')
-		})
+		if (k.ignore) {
+			btn.classList.add("ignored")
+		} else {
+			btn.addEventListener("click", () => handleClick(k.romaji, current_kana))
+			btn.addEventListener('touchstart', () => {
+				btn.classList.add('touched')
+			})
 
-		btn.addEventListener('touchend', () => {
-			btn.classList.remove('touched')
-		})
+			btn.addEventListener('touchend', () => {
+				btn.classList.remove('touched')
+			})
 
-		btn.addEventListener('touchcancel', () => {
-			btn.classList.remove('touched')
-		})
+			btn.addEventListener('touchcancel', () => {
+				btn.classList.remove('touched')
+			})
+		}
 		romaji_bar.appendChild(btn)
 	})
 }
