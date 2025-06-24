@@ -51,7 +51,7 @@ top_info.appendChild(user_score)
 
 const kana_map = [
 	{
-		name: "hg_a",
+		name: "a",
 		kanas: [
 			{ romaji: "a", hiragana: "あ" },
 			{ romaji: "i", hiragana: "い" },
@@ -61,13 +61,91 @@ const kana_map = [
 		],
 	},
 	{
-		name: "hg_k",
+		name: "ka",
 		kanas: [
 			{ romaji: "ka", hiragana: "か" },
 			{ romaji: "ki", hiragana: "き" },
 			{ romaji: "ku", hiragana: "く" },
 			{ romaji: "ke", hiragana: "け" },
 			{ romaji: "ko", hiragana: "こ" },
+		]
+	},
+	{
+		name: "sa",
+		kanas: [
+			{ romaji: "sa", hiragana: "さ" },
+			{ romaji: "shi", hiragana: "し" },
+			{ romaji: "su", hiragana: "す" },
+			{ romaji: "se", hiragana: "せ" },
+			{ romaji: "so", hiragana: "そ" },
+		]
+	},
+	{
+		name: "ta",
+		kanas: [
+			{ romaji: "ta", hiragana: "た" },
+			{ romaji: "chi", hiragana: "ち" },
+			{ romaji: "tsu", hiragana: "つ" },
+			{ romaji: "te", hiragana: "て" },
+			{ romaji: "to", hiragana: "と" },
+		]
+	},
+	{
+		name: "na",
+		kanas: [
+			{ romaji: "na", hiragana: "な" },
+			{ romaji: "ni", hiragana: "に" },
+			{ romaji: "nu", hiragana: "ぬ" },
+			{ romaji: "ne", hiragana: "ね" },
+			{ romaji: "no", hiragana: "の" },
+		]
+	},
+	{
+		name: "ha",
+		kanas: [
+			{ romaji: "ha", hiragana: "は" },
+			{ romaji: "hi", hiragana: "ひ" },
+			{ romaji: "fu", hiragana: "ふ" },
+			{ romaji: "he", hiragana: "へ" },
+			{ romaji: "ho", hiragana: "ほ" },
+		]
+	},
+	{
+		name: "ma",
+		kanas: [
+			{ romaji: "ma", hiragana: "ま" },
+			{ romaji: "mi", hiragana: "み" },
+			{ romaji: "mu", hiragana: "む" },
+			{ romaji: "me", hiragana: "め" },
+			{ romaji: "mo", hiragana: "も" },
+		]
+	},
+	{
+		name: "ya",
+		kanas: [
+			{ romaji: "ya", hiragana: "や" },
+			{ romaji: "yu", hiragana: "ゆ" },
+			{ romaji: "yo", hiragana: "よ" },
+		]
+	},
+	{
+		name: "ra",
+		kanas: [
+			{ romaji: "ra", hiragana: "ら" },
+			{ romaji: "ri", hiragana: "り" },
+			{ romaji: "ru", hiragana: "る" },
+			{ romaji: "re", hiragana: "れ" },
+			{ romaji: "ro", hiragana: "ろ" },
+		]
+	},
+	{
+		name: "wa",
+		kanas: [
+			{ romaji: "wa", hiragana: "わ" },
+			{ romaji: "wi", hiragana: "ゐ" },
+			{ romaji: "we", hiragana: "ゑ" },
+			{ romaji: "wo", hiragana: "を" },
+			{ romaji: "n", hiragana: "ん" },
 		]
 	}
 ]
@@ -96,10 +174,16 @@ const randomKana = (row, last) => {
 }
 
 const nextQuest = () => {
-	let row_index = Math.floor(score / 25)
-	let row = kana_map[row_index].kanas
+	let row_index = Math.floor(score / 5) + 6
+	let block = kana_map[row_index]
+	let row = [...block.kanas]
 	let current_kana = randomKana(row, last_kana)
 	kana.textContent = current_kana.hiragana
+
+	if (block.name === "ya") {
+		let filler = { romaji: "", hiragana: "" }
+		row = [row[0], filler, row[1], filler, row[2]]
+	}
 
 	romaji_bar.innerHTML = ""
 	row.forEach(k => {
