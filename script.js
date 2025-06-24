@@ -23,14 +23,17 @@ top_info.appendChild(other_stuff)
 const progress = document.createElement("div")
 progress.id = "progress"
 
+let percentage = 0
+
 const progress_tag = document.createElement("div")
 progress_tag.className = "info"
-progress_tag.innerHTML = "<span>Progress:&nbsp;<span class='perc'>18%</span></span>"
+progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`
 
 const bar = document.createElement("div")
 bar.id = "bar"
 const bar_inner = document.createElement("div")
 bar_inner.id = "inner"
+bar_inner.style.width = 0
 
 bar.appendChild(bar_inner)
 
@@ -40,7 +43,7 @@ progress.appendChild(bar)
 top_info.appendChild(progress)
 
 let score = 0
-const round_items = 3
+const round_items = 25
 
 const user_score = document.createElement("div")
 user_score.id = "score"
@@ -151,6 +154,12 @@ const kana_map = [
 	}
 ]
 
+let total = 0
+for (const row of kana_map) {
+	total += row.kanas.length
+}
+total *= round_items
+
 // At the center, we'll show the kana in a big font.
 const kana = document.createElement("div")
 kana.id = "kana"
@@ -175,7 +184,7 @@ const randomKana = (row, last) => {
 }
 
 const nextQuest = () => {
-	let row_index = Math.floor(score / round_items) + 7
+	let row_index = Math.floor(score / round_items)
 	let block = kana_map[row_index % kana_map.length]
 	let row = [...block.kanas]
 	let current_kana = randomKana(row, last_kana)
@@ -216,6 +225,9 @@ const handleClick = (rmj, current) => {
 	if (right) {
 		score++
 		user_score.innerHTML = `<span>Score: <span class='score'>${score}</span></span>`
+		percentage = Math.min(Math.floor(100 / total * score), 100)
+		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`
+		bar_inner.style.width = `${percentage}%`
 	}
 	nextQuest()
 }
@@ -226,7 +238,8 @@ const footer = document.createElement("div")
 footer.id = "footer"
 const footer_content = document.createElement("span")
 footer_content.classList.add("love")
-footer_content.innerText = "Made with 💖 by Nano"
+// TODO: Add neovim's logo!
+footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> with 💖 by Nano"
 
 footer.appendChild(footer_content)
 

@@ -60,7 +60,6 @@ html, body {
 
 #inner {
 	height: 100%;
-	width: 18%;
 	background: hsl(182, 30%, 50%);
 }
 
@@ -117,6 +116,11 @@ html, body {
 }
 
 #footer {
-	padding: 1rem;
+	padding: 0.5rem;
 	color: hsl(243, 20%, 50%);
+	font-size: 0.7rem;
+}
+
+.green {
+	color: hsl(150, 50%, 50%);
 }
