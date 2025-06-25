@@ -52,6 +52,14 @@ user_score.innerHTML = `<span>Score: <span class='score'>${score}</span></span>`
 
 top_info.appendChild(user_score);
 
+const show_hint = document.createElement("div");
+show_hint.id = "hint";
+show_hint.classList.add("info");
+
+show_hint.innerHTML = `<span>Hint:</span>`
+
+top_info.appendChild(show_hint)
+
 const kana_map = [
 	{
 		name: "a",
@@ -207,6 +215,7 @@ const nextQuest = () => {
 	}
 
 	kana.textContent = current_kana.hiragana;
+	kana.addEventListener("click", () => hint_me(current_kana.romaji));
 
 	if (block.name === "ya") {
 		let filler = { romaji: "", hiragana: "", ignore: true };
@@ -238,6 +247,10 @@ const nextQuest = () => {
 	})
 }
 
+const hint_me = (rmj) => {
+	show_hint.innerHTML = `<span>Hint: ${rmj}</span>`;
+}
+
 const handleClick = (rmj, current) => {
 	const right = rmj === current.romaji;
 	if (right) {
@@ -246,8 +259,9 @@ const handleClick = (rmj, current) => {
 		percentage = Math.min(Math.floor(100 / total * score), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
+		hint_me("");
+		nextQuest();
 	}
-	nextQuest();
 }
 
 nextQuest();
