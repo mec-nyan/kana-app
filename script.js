@@ -198,7 +198,19 @@ kana_map.forEach(row => {
 	game.rows = [...game.rows, game_row];
 })
 
+const game_played = () => {
+	game.rows.forEach(row => {
+		if (!row.played) {
+			return false;
+		}
+	})
+	return true;
+}
+
 const next = () => {
+	if (game_played) {
+		return [-1, -1];
+	}
 	let row = 0;
 	let col = 0;
 	// Find a row.
@@ -231,6 +243,9 @@ const next = () => {
 
 const nextQuest = () => {
 	let [nrow, ncol] = next();
+	if (nrow == -1) {
+		// Do something.
+	}
 	let block = game.rows[nrow];
 	let row = block.kanas;
 	let current_kana = row[ncol];
