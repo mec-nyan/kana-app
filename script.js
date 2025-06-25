@@ -166,24 +166,6 @@ for (const row of kana_map) {
 	total += row.kanas.length
 }
 
-const shuffle = (kana_map) => {
-	const new_map = structuredClone(kana_map)
-	// Shuffle the kanas in each row.
-	new_map.forEach(row => {
-		let kanas = row.kanas
-		for (let i = kanas.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[kanas[i], kanas[j]] = [kanas[j], kanas[i]]
-		}
-	})
-	// Shuffle the rows in the map.
-	for (let i = new_map.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[new_map[i], new_map[j]] = [new_map[j], new_map[i]];
-	}
-	return new_map
-};
-
 // At the center, we'll show the kana in a big font.
 const kana = document.createElement("div");
 kana.id = "kana";
@@ -194,25 +176,64 @@ kana.id = "kana";
 const romaji_bar = document.createElement("div");
 romaji_bar.id = "romaji-bar";
 
-let current = {
-	row: 0,
-	col: 0,
+let game = {
+	played: false,
+	rows: [],
 };
 
-const nextQuest = () => {
-	let kanas = shuffle(kana_map);
-	let block = kanas[current.row];
-	let row = block.kanas;
-	let current_kana = row[current.col];
+kana_map.forEach(row => {
+	let game_row = {
+		name: row.name,
+		played: false,
+		kanas: [],
+	};
+	row.kanas.forEach(kana => {
+		let game_kana = {
+			romaji: kana.romaji,
+			hiragana: kana.hiragana,
+			shown: false,
+		};
+		game_row.kanas = [...game_row.kanas, game_kana];
+	})
+	game.rows = [...game.rows, game_row];
+})
 
-	current.col++;
-	if (current.col == row.length) {
-		current.col = 0;
-		current.row++;
+const next = () => {
+	let row = 0;
+	let col = 0;
+	// Find a row.
+	while (true) {
+		row = Math.floor(Math.random() * (game.rows.length));
+		if (!game.rows[row].played) {
+			break;
+		}
 	}
-	if (current.row == kanas.length) {
-		current.row = 0;
+	let row_arr = game.rows[row].kanas;
+	// Find a col.
+	while (true) {
+		col = Math.floor(Math.random() * (row_arr.length));
+		if (!row_arr[col].shown) {
+			break;
+		}
 	}
+
+	game.rows[row].kanas[col].shown = true;
+	let row_played = true;
+	game.rows[row].kanas.forEach(kana => {
+		if (!kana.shown) {
+			row_played = false;
+			return;
+		}
+	})
+	game.rows[row].played = row_played;
+	return [row, col];
+}
+
+const nextQuest = () => {
+	let [nrow, ncol] = next();
+	let block = game.rows[nrow];
+	let row = block.kanas;
+	let current_kana = row[ncol];
 
 	kana.textContent = current_kana.hiragana;
 	kana.addEventListener("click", () => hint_me(current_kana.romaji));
