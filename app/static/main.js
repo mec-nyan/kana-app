@@ -63,7 +63,7 @@ top_info.appendChild(progress);
 
 let score = 0;
 let round_score = 0;
-let current = 0;
+let num_hits = 0;
 
 const user_score = document.createElement("div");
 user_score.id = "score";
@@ -279,7 +279,7 @@ const nextQuest = () => {
 		term.innerHTML = `<p>${term_msg}<p>`;
 		score += round_score;
 		round_score = 0;
-		current = 0;
+		num_hits = 0;
 		return false;
 	}
 	let block = game.rows[nrow];
@@ -328,9 +328,9 @@ const handleClick = (rmj, current) => {
 	const right = rmj === current.romaji;
 	if (right) {
 		round_score++;
-		current++;
+		num_hits++;
 		user_score.innerHTML = `<span>Score: <span class='score'>${score + round_score}</span></span>`;
-		percentage = Math.min(Math.floor(100 / total * current), 100);
+		percentage = Math.min(Math.floor(100 / total * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
