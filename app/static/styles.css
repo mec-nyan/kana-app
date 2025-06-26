@@ -23,6 +23,20 @@ html, body {
 	/* padding: 2rem; */
 }
 
+#top-container {
+	padding: 0.25rem;
+	width: 100%;
+}
+
+#term {
+	background: hsl(243, 10%, 10%);
+	width: 100%;
+	color: hsl(243, 10%, 50%);
+	padding: 0.5rem;
+	font-family: "Hack", monospace;
+	font-size: 0.7rem;
+}
+
 #start {
 	/* border: 1px solid orange; */
 
@@ -49,6 +63,7 @@ html, body {
 #top-info {
 	/* border: 1px solid orange; */
 
+	background: hsl(243, 10%, 10%);
 	display: flex;
 	flex-direction: column;
 	width: 100%;

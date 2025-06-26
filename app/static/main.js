@@ -1,6 +1,16 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+const top_container = document.createElement("div");
+top_container.id = "top-container";
+
+const term = document.createElement("div");
+term.id = "term";
+
+let term_msg = "Let's learn hiragana and katakana!";
+term.innerHTML = `<p>${term_msg}<p>`;
+
+
 // Temproral "start" screen.
 const start = document.createElement("div");
 start.id = "start"
@@ -327,7 +337,9 @@ footer.appendChild(footer_content);
 const game_on = () => {
 	console.log("game on");
 	root.innerHTML = "";
-	root.appendChild(top_info);
+	top_container.innerHTML = "";
+	top_container.appendChild(top_info);
+	root.appendChild(top_container);
 	root.appendChild(kana);
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
@@ -339,6 +351,9 @@ const game_on = () => {
 const lets_do_it = () => {
 	console.log("let's do it!");
 	root.innerHTML = "";
+	top_container.innerHTML = "";
+	top_container.appendChild(term);
+	root.appendChild(top_container);
 	root.appendChild(start);
 	root.appendChild(footer);
 }
