@@ -62,6 +62,7 @@ progress.appendChild(bar);
 top_info.appendChild(progress);
 
 let score = 0;
+let round_score = 0;
 
 const user_score = document.createElement("div");
 user_score.id = "score";
@@ -222,6 +223,7 @@ const make_game = () => {
 	})
 }
 
+
 const game_played = () => {
 	for (const row of game.rows) {
 		if (!row.played) {
@@ -268,6 +270,12 @@ const next = () => {
 const nextQuest = () => {
 	let [nrow, ncol] = next();
 	if (nrow == -1) {
+		term_msg = "Congratulations!</br>";
+		term_msg += "You've completed this round.</br></br>";
+		term_msg += `Score: ${score}</br>`;
+		let accuracy = Math.floor(100 / total * round_score);
+		term_msg += `Accuracy: ${accuracy}%`;
+		round_score = 0;
 		return false;
 	}
 	let block = game.rows[nrow];
@@ -315,15 +323,18 @@ const hint_me = (rmj) => {
 const handleClick = (rmj, current) => {
 	const right = rmj === current.romaji;
 	if (right) {
-		score++;
+		round_score++;
 		user_score.innerHTML = `<span>Score: <span class='score'>${score}</span></span>`;
-		percentage = Math.min(Math.floor(100 / total * score), 100);
+		percentage = Math.min(Math.floor(100 / total * round_score), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
 		if (!nextQuest()) {
 			lets_do_it();
 		}
+	} else {
+		// TODO: improve this pointing system.
+		round_score--;
 	}
 }
 
@@ -361,6 +372,7 @@ const lets_do_it = () => {
 	root.appendChild(start);
 	root.appendChild(footer);
 }
+
 
 // TODO: Congrats! Confetti!
 lets_do_it();
