@@ -1,6 +1,15 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+// Temproral "start" screen.
+const start = document.createElement("div");
+start.id = "start"
+const start_button = document.createElement("div");
+start_button.id = "start-button";
+start_button.innerHTML = "Start";
+start.appendChild(start_button);
+start_button.addEventListener("click", () => game_on());
+
 // At the top, we'll place a div with general info.
 // Use small letters, like a hw monitor, etc.
 const top_info = document.createElement("div");
@@ -181,22 +190,24 @@ let game = {
 	rows: [],
 };
 
-kana_map.forEach(row => {
-	let game_row = {
-		name: row.name,
-		played: false,
-		kanas: [],
-	};
-	row.kanas.forEach(kana => {
-		let game_kana = {
-			romaji: kana.romaji,
-			hiragana: kana.hiragana,
-			shown: false,
+const make_game = () => {
+	kana_map.forEach(row => {
+		let game_row = {
+			name: row.name,
+			played: false,
+			kanas: [],
 		};
-		game_row.kanas = [...game_row.kanas, game_kana];
+		row.kanas.forEach(kana => {
+			let game_kana = {
+				romaji: kana.romaji,
+				hiragana: kana.hiragana,
+				shown: false,
+			};
+			game_row.kanas = [...game_row.kanas, game_kana];
+		})
+		game.rows = [...game.rows, game_row];
 	})
-	game.rows = [...game.rows, game_row];
-})
+}
 
 const game_played = () => {
 	game.rows.forEach(row => {
@@ -244,7 +255,7 @@ const next = () => {
 const nextQuest = () => {
 	let [nrow, ncol] = next();
 	if (nrow == -1) {
-		// Do something.
+		return false;
 	}
 	let block = game.rows[nrow];
 	let row = block.kanas;
@@ -281,6 +292,7 @@ const nextQuest = () => {
 		}
 		romaji_bar.appendChild(btn);
 	})
+	return true;
 }
 
 const hint_me = (rmj) => {
@@ -296,11 +308,9 @@ const handleClick = (rmj, current) => {
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
-		nextQuest();
 	}
 }
 
-nextQuest();
 // Footer.
 const footer = document.createElement("div");
 footer.id = "footer";
@@ -311,7 +321,18 @@ footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> wit
 
 footer.appendChild(footer_content);
 
-root.appendChild(top_info);
-root.appendChild(kana);
-root.appendChild(romaji_bar);
+const game_on = () => {
+	root.innerHTML = "";
+	root.appendChild(top_info);
+	root.appendChild(kana);
+	root.appendChild(romaji_bar);
+	root.appendChild(footer);
+	make_game();
+	while (nextQuest()) { };
+	return;
+}
+
+root.innerHTML = "";
+root.appendChild(start);
 root.appendChild(footer);
+
