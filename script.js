@@ -210,16 +210,16 @@ const make_game = () => {
 }
 
 const game_played = () => {
-	game.rows.forEach(row => {
+	for (const row of game.rows) {
 		if (!row.played) {
 			return false;
 		}
-	})
+	}
 	return true;
 }
 
 const next = () => {
-	if (game_played) {
+	if (game_played()) {
 		return [-1, -1];
 	}
 	let row = 0;
@@ -308,6 +308,9 @@ const handleClick = (rmj, current) => {
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
+		if (!nextQuest()) {
+			lets_do_it();
+		}
 	}
 }
 
@@ -322,17 +325,23 @@ footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> wit
 footer.appendChild(footer_content);
 
 const game_on = () => {
+	console.log("game on");
 	root.innerHTML = "";
 	root.appendChild(top_info);
 	root.appendChild(kana);
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
 	make_game();
-	while (nextQuest()) { };
+	nextQuest();
 	return;
 }
 
-root.innerHTML = "";
-root.appendChild(start);
-root.appendChild(footer);
+const lets_do_it = () => {
+	console.log("let's do it!");
+	root.innerHTML = "";
+	root.appendChild(start);
+	root.appendChild(footer);
+}
 
+// TODO: Congrats! Confetti!
+lets_do_it();

@@ -43,6 +43,7 @@ html, body {
 	text-align: center;
 	padding: 1rem;
 	border-radius: 8px;
+	cursor: pointer;
 }
 
 #top-info {
