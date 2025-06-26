@@ -63,6 +63,7 @@ top_info.appendChild(progress);
 
 let score = 0;
 let round_score = 0;
+let current = 0;
 
 const user_score = document.createElement("div");
 user_score.id = "score";
@@ -272,10 +273,13 @@ const nextQuest = () => {
 	if (nrow == -1) {
 		term_msg = "Congratulations!</br>";
 		term_msg += "You've completed this round.</br></br>";
-		term_msg += `Score: ${score}</br>`;
+		term_msg += `Score: ${round_score}</br>`;
 		let accuracy = Math.floor(100 / total * round_score);
 		term_msg += `Accuracy: ${accuracy}%`;
+		term.innerHTML = `<p>${term_msg}<p>`;
+		score += round_score;
 		round_score = 0;
+		current = 0;
 		return false;
 	}
 	let block = game.rows[nrow];
@@ -324,8 +328,9 @@ const handleClick = (rmj, current) => {
 	const right = rmj === current.romaji;
 	if (right) {
 		round_score++;
-		user_score.innerHTML = `<span>Score: <span class='score'>${score}</span></span>`;
-		percentage = Math.min(Math.floor(100 / total * round_score), 100);
+		current++;
+		user_score.innerHTML = `<span>Score: <span class='score'>${score + round_score}</span></span>`;
+		percentage = Math.min(Math.floor(100 / total * current), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
