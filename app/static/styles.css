@@ -115,6 +115,14 @@ html, body {
 	justify-content: center;
 	align-items: center;
 	font-size: 16rem;
+	font-family: serif;
+}
+
+#separator {
+	width: 30%;
+	height: 0.2rem;
+	background: hsl(243, 20%, 50%);
+	border-radius: 0.1rem;
 }
 
 #romaji-bar {
@@ -124,8 +132,7 @@ html, body {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	gap: 0.8rem;
-	padding: 1rem;
-	margin-bottom: 5%;
+	padding: 2rem 1rem;
 }
 
 .romaji-button {

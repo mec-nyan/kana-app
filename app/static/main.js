@@ -189,6 +189,9 @@ for (const row of kana_map) {
 const kana = document.createElement("div");
 kana.id = "kana";
 
+const separator = document.createElement("div");
+separator.id = "separator";
+
 // At the bottom, we'll place five "buttons" with the romaji that
 // correspond to the row of that kana.
 // I.e. if the kana is "か" the row will contain "ka", "ki", "ku", "ke", "ko".
@@ -341,6 +344,7 @@ const game_on = () => {
 	top_container.appendChild(top_info);
 	root.appendChild(top_container);
 	root.appendChild(kana);
+	root.appendChild(separator);
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
 	make_game();
