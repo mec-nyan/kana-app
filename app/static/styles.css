@@ -11,6 +11,13 @@ html, body {
 	color: hsl(42, 30%, 70%);
 }
 
+.no-select {
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	touch-action: manipulation;
+}
+
 #root {
 	/* border: 4px solid lightblue; */
 

@@ -65,6 +65,7 @@ let total_score = 0;
 let round_score = 0;
 let num_hits = 0;
 let num_tries = 0
+let hinted = false;
 
 const score_display = document.createElement("div");
 score_display.id = "score";
@@ -74,13 +75,13 @@ score_display.innerHTML = `<span>Score: <span class='score'>${total_score}</span
 
 top_info.appendChild(score_display);
 
-const show_hint = document.createElement("div");
-show_hint.id = "hint";
-show_hint.classList.add("info");
+const hint_display = document.createElement("div");
+hint_display.id = "hint";
+hint_display.classList.add("info");
 
-show_hint.innerHTML = `<span>Hint:</span>`
+hint_display.innerHTML = `<span>Hint:</span>`
 
-top_info.appendChild(show_hint)
+top_info.appendChild(hint_display)
 
 const kana_map = [
 	{
@@ -304,7 +305,10 @@ const nextQuest = () => {
 	romaji_bar.innerHTML = "";
 	row.forEach(k => {
 		let btn = document.createElement("div");
-		btn.className = "romaji-button";
+		btn.classList.add("romaji-button");
+		btn.classList.add("no-select");
+		btn.addEventListener("contextmenu", (e) => e.preventDefault());
+		btn.addEventListener("click", (e) => e.preventDefault());
 		btn.innerText = k.romaji;
 		if (k.ignore) {
 			btn.classList.add("ignored");
@@ -328,15 +332,20 @@ const nextQuest = () => {
 }
 
 const hint_me = (rmj) => {
-	show_hint.innerHTML = `<span>Hint: ${rmj}</span>`;
+	hinted = true;
+	hint_display.innerHTML = `<span>Hint: ${rmj}</span>`;
 }
 
 const handleClick = (rmj, current) => {
 	num_tries++;
 	const right = rmj === current.romaji;
 	if (right) {
+		if (!hinted) {
+			round_score++;
+		} else {
+			hinted = false;
+		}
 		num_hits++;
-		round_score++;
 		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
 		percentage = Math.min(Math.floor(100 / total * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
