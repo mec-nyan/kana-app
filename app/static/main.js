@@ -61,17 +61,18 @@ progress.appendChild(bar);
 
 top_info.appendChild(progress);
 
-let score = 0;
+let total_score = 0;
 let round_score = 0;
 let num_hits = 0;
+let num_tries = 0
 
-const user_score = document.createElement("div");
-user_score.id = "score";
-user_score.className = "info";
+const score_display = document.createElement("div");
+score_display.id = "score";
+score_display.className = "info";
 
-user_score.innerHTML = `<span>Score: <span class='score'>${score}</span></span>`;
+score_display.innerHTML = `<span>Score: <span class='score'>${total_score}</span></span>`;
 
-top_info.appendChild(user_score);
+top_info.appendChild(score_display);
 
 const show_hint = document.createElement("div");
 show_hint.id = "hint";
@@ -102,6 +103,7 @@ const kana_map = [
 			{ romaji: "ko", hiragana: "こ" },
 		]
 	},
+	/*
 	{
 		name: "sa",
 		kanas: [
@@ -180,12 +182,18 @@ const kana_map = [
 			{ romaji: "wo", hiragana: "を" },
 		]
 	}
+	*/
 ];
 
-let total = 0;
-for (const row of kana_map) {
-	total += row.kanas.length
+function count_kanas(kana_map) {
+	let count = 0;
+	for (const row of kana_map) {
+		count += row.kanas.length;
+	}
+	return count;
 }
+
+let total = count_kanas(kana_map);
 
 // At the center, we'll show the kana in a big font.
 const kana = document.createElement("div");
@@ -201,7 +209,6 @@ const romaji_bar = document.createElement("div");
 romaji_bar.id = "romaji-bar";
 
 let game = {
-	played: false,
 	rows: [],
 };
 
@@ -274,12 +281,12 @@ const nextQuest = () => {
 		term_msg = "Congratulations!</br>";
 		term_msg += "You've completed this round.</br></br>";
 		term_msg += `Score: ${round_score}</br>`;
-		let accuracy = Math.floor(100 / total * round_score);
-		term_msg += `Accuracy: ${accuracy}%`;
+		term_msg += `Accuracy: ${Math.floor(100 / num_tries * num_hits)}%`;
 		term.innerHTML = `<p>${term_msg}<p>`;
-		score += round_score;
+		total_score += round_score;
 		round_score = 0;
 		num_hits = 0;
+		num_tries = 0;
 		return false;
 	}
 	let block = game.rows[nrow];
@@ -325,11 +332,12 @@ const hint_me = (rmj) => {
 }
 
 const handleClick = (rmj, current) => {
+	num_tries++;
 	const right = rmj === current.romaji;
 	if (right) {
-		round_score++;
 		num_hits++;
-		user_score.innerHTML = `<span>Score: <span class='score'>${score + round_score}</span></span>`;
+		round_score++;
+		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
 		percentage = Math.min(Math.floor(100 / total * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
@@ -338,8 +346,8 @@ const handleClick = (rmj, current) => {
 			lets_do_it();
 		}
 	} else {
-		// TODO: improve this pointing system.
 		round_score--;
+		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
 	}
 }
 
