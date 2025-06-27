@@ -28,7 +28,7 @@ top_info.id = "top-info";
 const mode = document.createElement("div");
 mode.id = "mode";
 mode.className = "info";
-mode.innerHTML = `<span>Mode: <span class="hg">ひらがな</span> (hiragana)</span>`;
+mode.innerHTML = `<span>Mode: <span class="info-highlighted">ひらがな</span> (hiragana)</span>`;
 
 top_info.appendChild(mode);
 
@@ -45,7 +45,7 @@ let percentage = 0;
 
 const progress_tag = document.createElement("div");
 progress_tag.className = "info";
-progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
+progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
 
 const bar = document.createElement("div");
 bar.id = "bar";
@@ -71,7 +71,7 @@ const score_display = document.createElement("div");
 score_display.id = "score";
 score_display.className = "info";
 
-score_display.innerHTML = `<span>Score: <span class='score'>${total_score}</span></span>`;
+score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score}</span></span>`;
 
 top_info.appendChild(score_display);
 
@@ -329,7 +329,7 @@ const nextQuest = () => {
 
 const hint_me = (rmj) => {
 	hinted = true;
-	hint_display.innerHTML = `<span>Hint: ${rmj}</span>`;
+	hint_display.innerHTML = `<span>Hint: <span class="info-highlighted">${rmj}</span></span>`;
 }
 
 const handleClick = (rmj, current) => {
@@ -342,10 +342,10 @@ const handleClick = (rmj, current) => {
 			hinted = false;
 		}
 		num_hits++;
-		other_stuff.innerHTML = `<span>Kanas on this drill: ${kana_count} - \(${kana_count-num_hits} lerf\)</span>`;
-		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
+		other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count-num_hits} lerf\)</span>`;
+		score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
 		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
-		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
+		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
 		if (!nextQuest()) {
@@ -379,7 +379,7 @@ const game_on = () => {
 	root.appendChild(footer);
 	make_game();
 	kana_count = count_kanas(game);
-	other_stuff.innerHTML = `<span>Kanas on this drill: ${kana_count} - \(${kana_count} lerf\)</span>`;
+	other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
 	console.log(`kana count: ${kana_count}`);
 	nextQuest();
 	return;
