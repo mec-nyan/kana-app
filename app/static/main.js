@@ -7,8 +7,7 @@ top_container.id = "top-container";
 const term = document.createElement("div");
 term.id = "term";
 
-let term_msg = "Let's learn hiragana and katakana!";
-term.innerHTML = `<p>${term_msg}<p>`;
+let term_content = ["Let's learn hiragana!"];
 
 
 // Temproral "start" screen.
@@ -104,6 +103,7 @@ const kana_map = [
 			{ romaji: "ko", hiragana: "こ" },
 		]
 	},
+	/*
 	{
 		name: "sa",
 		kanas: [
@@ -181,7 +181,8 @@ const kana_map = [
 			{ romaji: "_e", hiragana: "ゑ" },
 			{ romaji: "wo", hiragana: "を" },
 		]
-	}
+	},
+	*/
 ];
 
 // At the center, we'll show the kana in a big font.
@@ -275,11 +276,13 @@ const next = () => {
 const nextQuest = () => {
 	let [nrow, ncol] = next();
 	if (nrow == -1) {
-		term_msg = "Congratulations!</br>";
-		term_msg += "You've completed this round.</br></br>";
-		term_msg += `Score: ${round_score}</br>`;
-		term_msg += `Accuracy: ${Math.floor(100 / num_tries * num_hits)}%`;
-		term.innerHTML = `<p>${term_msg}<p>`;
+		term_content = [
+			"Congratulations!",
+			"You've completed this round.",
+			"",
+			`Score: ${round_score}`,
+			`Accuracy: ${Math.floor(100 / num_tries * num_hits)}%`,
+		];
 		total_score += round_score;
 		round_score = 0;
 		num_hits = 0;
@@ -342,7 +345,7 @@ const handleClick = (rmj, current) => {
 			hinted = false;
 		}
 		num_hits++;
-		other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count-num_hits} lerf\)</span>`;
+		other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count - num_hits} lerf\)</span>`;
 		score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
 		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
@@ -390,11 +393,32 @@ const lets_do_it = () => {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(term);
+	write(term_content);
 	root.appendChild(top_container);
 	root.appendChild(start);
 	root.appendChild(footer);
 }
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const write = async (content) => {
+	let output = "";
+	for (const line of content) {
+		for (let i = 0; i < line.length; ++i) {
+			output += line[i];
+			if (i + 1 < line.length) {
+				term.innerHTML = `<p>${output}_</p>`
+			} else {
+				term.innerHTML = `<p>${output}<span class="blink">_<span></p>`
+			}
+			await sleep(50);
+		}
+		if (line !== "") {
+			await sleep(600);
+		}
+		output += "</br>";
+	}
+}
 
 // TODO: Congrats! Confetti!
 lets_do_it();
