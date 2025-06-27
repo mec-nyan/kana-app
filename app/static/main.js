@@ -28,14 +28,13 @@ top_info.id = "top-info";
 const mode = document.createElement("div");
 mode.id = "mode";
 mode.className = "info";
-mode.innerHTML = `<span>Mode: ひらがな (hiragana)</span>`;
+mode.innerHTML = `<span>Mode: <span class="hg">ひらがな</span> (hiragana)</span>`;
 
 top_info.appendChild(mode);
 
 const other_stuff = document.createElement("div");
 other_stuff.id = "other_stuff";
 other_stuff.className = "info";
-other_stuff.innerHTML = `<span>I may place some stats here.</span>`;
 
 top_info.appendChild(other_stuff);
 
@@ -61,6 +60,7 @@ progress.appendChild(bar);
 
 top_info.appendChild(progress);
 
+let kana_count = 0;
 let total_score = 0;
 let round_score = 0;
 let num_hits = 0;
@@ -104,7 +104,6 @@ const kana_map = [
 			{ romaji: "ko", hiragana: "こ" },
 		]
 	},
-	/*
 	{
 		name: "sa",
 		kanas: [
@@ -183,18 +182,7 @@ const kana_map = [
 			{ romaji: "wo", hiragana: "を" },
 		]
 	}
-	*/
 ];
-
-function count_kanas(kana_map) {
-	let count = 0;
-	for (const row of kana_map) {
-		count += row.kanas.length;
-	}
-	return count;
-}
-
-let total = count_kanas(kana_map);
 
 // At the center, we'll show the kana in a big font.
 const kana = document.createElement("div");
@@ -212,6 +200,14 @@ romaji_bar.id = "romaji-bar";
 let game = {
 	rows: [],
 };
+
+function count_kanas(game) {
+	let count = 0;
+	game.rows.forEach(row => {
+		count += row.kanas.length;
+	});
+	return count;
+}
 
 const make_game = () => {
 	kana_map.forEach(row => {
@@ -346,8 +342,9 @@ const handleClick = (rmj, current) => {
 			hinted = false;
 		}
 		num_hits++;
+		other_stuff.innerHTML = `<span>Kanas on this drill: ${kana_count} - \(${kana_count-num_hits} lerf\)</span>`;
 		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
-		percentage = Math.min(Math.floor(100 / total * num_hits), 100);
+		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='perc'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
@@ -381,6 +378,9 @@ const game_on = () => {
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
 	make_game();
+	kana_count = count_kanas(game);
+	other_stuff.innerHTML = `<span>Kanas on this drill: ${kana_count} - \(${kana_count} lerf\)</span>`;
+	console.log(`kana count: ${kana_count}`);
 	nextQuest();
 	return;
 }
