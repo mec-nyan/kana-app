@@ -21,16 +21,17 @@ const option_buttons = document.createElement("div");
 option_buttons.id = "option-buttons";
 
 const options = [
-	" ",
-	" ",
-	" ",
-	" ",
+	{ icon: " ", name: "config" },
+	{ icon: " ", name: "dev" },
+	{ icon: " ", name: "..." },
+	{ icon: " ", name: "..." },
 ];
 
 options.forEach(opt => {
 	const btn = document.createElement("div");
 	btn.classList.add("opt");
-	btn.innerHTML = `<span class="nerd-icon">${opt}</span>`;
+	btn.addEventListener("click", () => game_on(true));
+	btn.innerHTML = `<span class="nerd-icon">${opt.icon}</span>`;
 	option_buttons.appendChild(btn);
 })
 
@@ -42,7 +43,7 @@ start_button.id = "start-button";
 start_button.innerHTML = "Start";
 start.appendChild(option_buttons);
 start.appendChild(start_button);
-start_button.addEventListener("click", () => game_on());
+start_button.addEventListener("click", () => game_on(false));
 
 // At the top, we'll place a div with general info.
 // Use small letters, like a hw monitor, etc.
@@ -128,7 +129,6 @@ const kana_map = [
 			{ romaji: "ko", hiragana: "こ" },
 		]
 	},
-	/*
 	{
 		name: "sa",
 		kanas: [
@@ -207,8 +207,8 @@ const kana_map = [
 			{ romaji: "wo", hiragana: "を" },
 		]
 	},
-	*/
 ];
+
 
 // At the center, we'll show the kana in a big font.
 const kana = document.createElement("div");
@@ -235,8 +235,12 @@ function count_kanas(game) {
 	return count;
 }
 
-const make_game = () => {
-	kana_map.forEach(row => {
+const make_game = (dev = false) => {
+	let game_map = [...kana_map];
+	if (dev) {
+		game_map = [kana_map[0], kana_map[1]];
+	}
+	game_map.forEach(row => {
 		let game_row = {
 			name: row.name,
 			played: false,
@@ -395,7 +399,7 @@ footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> wit
 
 footer.appendChild(footer_content);
 
-const game_on = () => {
+const game_on = (dev = false) => {
 	console.log("game on");
 	root.innerHTML = "";
 	top_container.innerHTML = "";
@@ -405,7 +409,7 @@ const game_on = () => {
 	root.appendChild(separator);
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
-	make_game();
+	make_game(dev);
 	kana_count = count_kanas(game);
 	other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
 	console.log(`kana count: ${kana_count}`);
