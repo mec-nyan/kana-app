@@ -21,10 +21,10 @@ const option_buttons = document.createElement("div");
 option_buttons.id = "option-buttons";
 
 const options = [
-	{ icon: " ", name: "config" },
-	{ icon: " ", name: "dev" },
-	{ icon: " ", name: "..." },
-	{ icon: " ", name: "..." },
+	{ icon: " ", name: "config" },
+	{ icon: "󰋖 ", name: "..." },
+	{ icon: " ", name: "..." },
+	{ icon: " ", name: "dev" },
 ];
 
 options.forEach(opt => {
