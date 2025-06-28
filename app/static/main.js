@@ -7,15 +7,40 @@ top_container.id = "top-container";
 const term = document.createElement("div");
 term.id = "term";
 
-let term_content = ["Let's learn hiragana!"];
+let term_content = [
+	"Welcome to kana-app!",
+	"",
+	"I'll help you learn hiragana and katakana!",
+	"",
+	"Are you ready?",
+];
 
 
 // Temproral "start" screen.
+const option_buttons = document.createElement("div");
+option_buttons.id = "option-buttons";
+
+const options = [
+	" ",
+	" ",
+	" ",
+	" ",
+];
+
+options.forEach(opt => {
+	const btn = document.createElement("div");
+	btn.classList.add("opt");
+	btn.innerHTML = `<span class="nerd-icon">${opt}</span>`;
+	option_buttons.appendChild(btn);
+})
+
+
 const start = document.createElement("div");
 start.id = "start"
 const start_button = document.createElement("div");
 start_button.id = "start-button";
 start_button.innerHTML = "Start";
+start.appendChild(option_buttons);
 start.appendChild(start_button);
 start_button.addEventListener("click", () => game_on());
 

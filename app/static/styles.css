@@ -1,3 +1,12 @@
+@font-face {
+	font-family: "Hack Nerd Font";
+	src: url('fonts/HackNerdFont-Regular.ttf') format('truetype');
+}
+
+.nerd-icon {
+	font-family: "Hack Nerd Font";
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -45,6 +54,28 @@ html, body {
 	font-size: 0.7rem;
 }
 
+#option-buttons {
+	/* border: 1px solid lightblue; */
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
+	gap: 1rem;
+	width: 60%;
+	margin-bottom: 1rem;
+}
+
+.opt {
+	background: hsl(243, 20%, 20%);
+	color: hsl(243, 10%, 40%);
+	width: 100%;
+	font-size: 2rem;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3lh;
+}
+
 .blink {
 	animation: blink-animation 1s steps(1, start) infinite;
 }
@@ -74,10 +105,10 @@ html, body {
 
 #start-button {
 	background: hsl(243, 20%, 18%);
-	border: 1px solid hsl(150, 25%, 25%);
+	border: 1px solid hsl(243, 10%, 30%);
 	font-family: "Hack", monospace;
 	font-size: 1.25rem;
-	width: 50%;
+	width: 60%;
 	text-align: center;
 	padding: 1rem;
 	border-radius: 8px;
