@@ -35,9 +35,23 @@ html, body {
 	justify-content: space-between;
 	align-items: center;
 	height: 100dvh;
-	width: 100dvw;
 	/* padding: 2rem; */
 }
+
+/* Just a placeholder for making a responsive desing later. */
+@media (orientation: portrait) {
+	#root {
+		width: 100dvw;
+	}
+}
+
+@media (orientation: landscape) {
+	#root {
+		width: 50dvh;
+		margin: 0 auto;
+	}
+}
+
 
 #top-container {
 	padding: 0.25rem;
