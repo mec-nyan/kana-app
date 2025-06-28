@@ -201,9 +201,9 @@ const kana_map = [
 		name: "wa",
 		kanas: [
 			{ romaji: "wa", hiragana: "わ" },
-			{ romaji: "_i", hiragana: "ゐ" },
+			{ romaji: "i", hiragana: "ゐ" },
 			{ romaji: "n", hiragana: "ん" },
-			{ romaji: "_e", hiragana: "ゑ" },
+			{ romaji: "e", hiragana: "ゑ" },
 			{ romaji: "wo", hiragana: "を" },
 		]
 	},
@@ -235,7 +235,7 @@ function count_kanas(game) {
 	return count;
 }
 
-const make_game = (dev = false) => {
+function make_game(dev = false) {
 	let game_map = [...kana_map];
 	if (dev) {
 		game_map = [kana_map[0], kana_map[1]];
@@ -259,7 +259,7 @@ const make_game = (dev = false) => {
 }
 
 
-const game_played = () => {
+function game_played() {
 	for (const row of game.rows) {
 		if (!row.played) {
 			return false;
@@ -268,7 +268,7 @@ const game_played = () => {
 	return true;
 }
 
-const next = () => {
+function next() {
 	if (game_played()) {
 		return [-1, -1];
 	}
@@ -302,7 +302,7 @@ const next = () => {
 	return [row, col];
 }
 
-const nextQuest = () => {
+function nextQuest() {
 	let [nrow, ncol] = next();
 	if (nrow == -1) {
 		term_content = [
@@ -359,12 +359,12 @@ const nextQuest = () => {
 	return true;
 }
 
-const hint_me = (rmj) => {
+function hint_me(rmj) {
 	hinted = true;
 	hint_display.innerHTML = `<span>Hint: <span class="info-highlighted">${rmj}</span></span>`;
 }
 
-const handleClick = (rmj, current) => {
+function handleClick(rmj, current) {
 	num_tries++;
 	const right = rmj === current.romaji;
 	if (right) {
@@ -399,7 +399,7 @@ footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> wit
 
 footer.appendChild(footer_content);
 
-const game_on = (dev = false) => {
+function game_on(dev = false) {
 	console.log("game on");
 	root.innerHTML = "";
 	top_container.innerHTML = "";
@@ -417,7 +417,7 @@ const game_on = (dev = false) => {
 	return;
 }
 
-const lets_do_it = () => {
+function lets_do_it() {
 	console.log("let's do it!");
 	root.innerHTML = "";
 	top_container.innerHTML = "";
@@ -430,7 +430,7 @@ const lets_do_it = () => {
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const write = async (content) => {
+async function write(content) {
 	let output = "";
 	for (const line of content) {
 		for (let i = 0; i < line.length; ++i) {
