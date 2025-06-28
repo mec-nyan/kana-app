@@ -1,12 +1,14 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+// Container for term-ish info pane.
 const top_container = document.createElement("div");
 top_container.id = "top-container";
 
 const term = document.createElement("div");
 term.id = "term";
 
+// Initial content.
 let term_content = [
 	"Welcome to kana-app!",
 	"",
@@ -16,7 +18,7 @@ let term_content = [
 ];
 
 
-// Temproral "start" screen.
+// Option buttons (duh!).
 const option_buttons = document.createElement("div");
 option_buttons.id = "option-buttons";
 
@@ -36,33 +38,39 @@ options.forEach(opt => {
 })
 
 
-const start = document.createElement("div");
-start.id = "start"
+const actions_pane = document.createElement("div");
+actions_pane.id = "actions"
+
 const start_button = document.createElement("div");
 start_button.id = "start-button";
 start_button.innerHTML = "Start";
-start.appendChild(option_buttons);
-start.appendChild(start_button);
+
+actions_pane.appendChild(option_buttons);
+actions_pane.appendChild(start_button);
 start_button.addEventListener("click", () => game_on(false));
 
+
+// Game screen.
+//
 // At the top, we'll place a div with general info.
 // Use small letters, like a hw monitor, etc.
 const top_info = document.createElement("div");
 top_info.id = "top-info";
 
+// Show current mode i.e. "hiragana"/"katakana".
 const mode = document.createElement("div");
 mode.id = "mode";
 mode.className = "info";
 mode.innerHTML = `<span>Mode: <span class="info-highlighted">ひらがな</span> (hiragana)</span>`;
 
-top_info.appendChild(mode);
 
-const other_stuff = document.createElement("div");
-other_stuff.id = "other_stuff";
-other_stuff.className = "info";
+// Show info on current drill (number of kanas, kanas left).
+const drill_info = document.createElement("div");
+drill_info.id = "drill-info";
+drill_info.className = "info";
 
-top_info.appendChild(other_stuff);
 
+// Display progress on current drill.
 const progress = document.createElement("div");
 progress.id = "progress";
 
@@ -83,7 +91,6 @@ bar.appendChild(bar_inner);
 progress.appendChild(progress_tag);
 progress.appendChild(bar);
 
-top_info.appendChild(progress);
 
 let kana_count = 0;
 let total_score = 0;
@@ -98,7 +105,6 @@ score_display.className = "info";
 
 score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score}</span></span>`;
 
-top_info.appendChild(score_display);
 
 const hint_display = document.createElement("div");
 hint_display.id = "hint";
@@ -106,6 +112,10 @@ hint_display.classList.add("info");
 
 hint_display.innerHTML = `<span>Hint:</span>`
 
+top_info.appendChild(mode);
+top_info.appendChild(drill_info);
+top_info.appendChild(progress);
+top_info.appendChild(score_display);
 top_info.appendChild(hint_display)
 
 const kana_map = [
@@ -374,14 +384,14 @@ function handleClick(rmj, current) {
 			hinted = false;
 		}
 		num_hits++;
-		other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count - num_hits} lerf\)</span>`;
+		drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count - num_hits} lerf\)</span>`;
 		score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
 		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
 		bar_inner.style.width = `${percentage}%`;
 		hint_me("");
 		if (!nextQuest()) {
-			lets_do_it();
+			home_screen(root);
 		}
 	} else {
 		round_score--;
@@ -411,24 +421,14 @@ function game_on(dev = false) {
 	root.appendChild(footer);
 	make_game(dev);
 	kana_count = count_kanas(game);
-	other_stuff.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
-	console.log(`kana count: ${kana_count}`);
+	drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
 	nextQuest();
 	return;
 }
 
-function lets_do_it() {
-	console.log("let's do it!");
-	root.innerHTML = "";
-	top_container.innerHTML = "";
-	top_container.appendChild(term);
-	write(term_content);
-	root.appendChild(top_container);
-	root.appendChild(start);
-	root.appendChild(footer);
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function write(content) {
 	let output = "";
@@ -449,5 +449,16 @@ async function write(content) {
 	}
 }
 
-// TODO: Congrats! Confetti!
-lets_do_it();
+function home_screen(root) {
+	root.innerHTML = "";
+	top_container.innerHTML = "";
+	top_container.appendChild(term);
+	write(term_content);
+	root.appendChild(top_container);
+	root.appendChild(actions_pane);
+	root.appendChild(footer);
+}
+
+(function main() {
+	home_screen(root);
+})()
