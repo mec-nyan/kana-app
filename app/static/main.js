@@ -84,7 +84,7 @@ const bar = document.createElement("div");
 bar.id = "bar";
 const bar_inner = document.createElement("div");
 bar_inner.id = "inner";
-bar_inner.style.width = 0;
+bar_inner.style.width = "100%";
 
 bar.appendChild(bar_inner);
 
@@ -388,7 +388,7 @@ function handleClick(rmj, current) {
 		score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
 		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
-		bar_inner.style.width = `${percentage}%`;
+		bar_inner.style.width = `${100 - percentage}%`;
 		hint_me("");
 		if (!nextQuest()) {
 			home_screen(root);
