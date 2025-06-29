@@ -450,7 +450,10 @@ function handleClick(rmj, current) {
 
 		// If we've reached the last kana of this drill, return to home.
 		if (!next_quest()) {
-			home_screen(root);
+			// Wait a little bit so the user can see she finished this drill.
+			setTimeout(() => {
+				home_screen(root);
+			}, 1000);
 		}
 	} else {
 		// Missed. You loose one point.
