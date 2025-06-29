@@ -92,6 +92,7 @@ progress.appendChild(progress_tag);
 progress.appendChild(bar);
 
 
+// We'll use these for our score system.
 let kana_count = 0;
 let total_score = 0;
 let round_score = 0;
@@ -102,22 +103,25 @@ let hinted = false;
 const score_display = document.createElement("div");
 score_display.id = "score";
 score_display.className = "info";
-
 score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score}</span></span>`;
 
 
+// Show a hint (we'll be playing the sound soon!).
 const hint_display = document.createElement("div");
 hint_display.id = "hint";
 hint_display.classList.add("info");
 
 hint_display.innerHTML = `<span>Hint:</span>`
 
+// Compose the info pane:
 top_info.appendChild(mode);
 top_info.appendChild(drill_info);
 top_info.appendChild(progress);
 top_info.appendChild(score_display);
 top_info.appendChild(hint_display)
 
+
+// Hiragana chart.
 const kana_map = [
 	{
 		name: "a",
@@ -224,6 +228,7 @@ const kana_map = [
 const kana = document.createElement("div");
 kana.id = "kana";
 
+// A simple separator to make it all look nice.
 const separator = document.createElement("div");
 separator.id = "separator";
 
@@ -233,10 +238,13 @@ separator.id = "separator";
 const romaji_bar = document.createElement("div");
 romaji_bar.id = "romaji-bar";
 
+
+// "game" will be the current drill.
 let game = {
 	rows: [],
 };
 
+// We need to know how many kanas are in the current drill.
 function count_kanas(game) {
 	let count = 0;
 	game.rows.forEach(row => {
@@ -245,6 +253,8 @@ function count_kanas(game) {
 	return count;
 }
 
+// Populate the kanas for this drill.
+// In "dev" mode, use less rows to play a quick round.
 function make_game(dev = false) {
 	let game_map = [...kana_map];
 	if (dev) {
@@ -268,7 +278,7 @@ function make_game(dev = false) {
 	})
 }
 
-
+// Check if we've seen each kana in this drill.
 function game_played() {
 	for (const row of game.rows) {
 		if (!row.played) {
@@ -278,41 +288,59 @@ function game_played() {
 	return true;
 }
 
+// Find out the next kana in the drill.
 function next() {
 	if (game_played()) {
+		// TODO: maybe return somethin more meaningful.
 		return [-1, -1];
 	}
+
+	// Let's try to find a random row and column.
+	// This default value is just a placeholder.
 	let row = 0;
 	let col = 0;
-	// Find a row.
+
+	// Find a row that still has kanas to display.
 	while (true) {
 		row = Math.floor(Math.random() * (game.rows.length));
 		if (!game.rows[row].played) {
 			break;
 		}
 	}
-	let row_arr = game.rows[row].kanas;
-	// Find a col.
+
+	// Find a col that hasn't been displayed.
+	let row_ref = game.rows[row].kanas;
+
 	while (true) {
-		col = Math.floor(Math.random() * (row_arr.length));
-		if (!row_arr[col].shown) {
+		col = Math.floor(Math.random() * (row_ref.length));
+		if (!row_ref[col].shown) {
 			break;
 		}
 	}
 
+	// Set this kana to "played" or "seen".
 	game.rows[row].kanas[col].shown = true;
+
+	// Check if we've seen all the kanas in this particuar row.
 	let row_played = true;
+
 	game.rows[row].kanas.forEach(kana => {
 		if (!kana.shown) {
 			row_played = false;
 			return;
 		}
 	})
+
 	game.rows[row].played = row_played;
+
 	return [row, col];
 }
 
-function nextQuest() {
+
+// Show the next screen in the drill.
+// Set congrats message if we've completed this round.
+// (Maybe that should be somewhere else...)
+function next_quest() {
 	let [nrow, ncol] = next();
 	if (nrow == -1) {
 		term_content = [
@@ -328,26 +356,38 @@ function nextQuest() {
 		num_tries = 0;
 		return false;
 	}
-	let block = game.rows[nrow];
-	let row = block.kanas;
-	let current_kana = row[ncol];
 
+	// We need to find the "block" to be able to tell if we've got five kanas or just three.
+	let block = game.rows[nrow];
+
+	// The row will be displayed as options to select.
+	let row = block.kanas;
+
+	// This is the kana we need to guess correctly:
+	let current_kana = row[ncol];
 	kana.textContent = current_kana.hiragana;
+	// Show a hint. We'll replace this with audio soon.
 	kana.addEventListener("click", () => hint_me(current_kana.romaji));
 
+	// If we are in the "ya" block, use some fillers because this row only has three kanas.
 	if (block.name === "ya") {
 		let filler = { romaji: "", hiragana: "", ignore: true };
 		row = [row[0], filler, row[1], filler, row[2]];
 	}
 
+	// Clear buttons from the last played row and add the corresponding to the current row.
 	romaji_bar.innerHTML = "";
 	row.forEach(k => {
 		let btn = document.createElement("div");
+
 		btn.classList.add("romaji-button");
 		btn.classList.add("no-select");
 		btn.addEventListener("contextmenu", (e) => e.preventDefault());
 		btn.addEventListener("click", (e) => e.preventDefault());
+
 		btn.innerText = k.romaji;
+
+		// Ignore the "fillers".
 		if (k.ignore) {
 			btn.classList.add("ignored");
 		} else {
@@ -366,35 +406,56 @@ function nextQuest() {
 		}
 		romaji_bar.appendChild(btn);
 	})
+
 	return true;
 }
 
+// Print a hint (we'll replace this with audio).
 function hint_me(rmj) {
+	// No points if you asked for a hint haha.
 	hinted = true;
 	hint_display.innerHTML = `<span>Hint: <span class="info-highlighted">${rmj}</span></span>`;
 }
 
+//
 function handleClick(rmj, current) {
+	// This to know your accuracy.
 	num_tries++;
+
+	// Did you get it right?
 	const right = rmj === current.romaji;
+
 	if (right) {
+		// We're moving to the next kana, so...
 		if (!hinted) {
 			round_score++;
 		} else {
 			hinted = false;
 		}
+
 		num_hits++;
+
 		drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count - num_hits} lerf\)</span>`;
+
 		score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
+
 		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
+
 		progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
+
 		bar_inner.style.width = `${100 - percentage}%`;
+
+		// Clear the hint.
 		hint_me("");
-		if (!nextQuest()) {
+
+		// If we've reached the last kana of this drill, return to home.
+		if (!next_quest()) {
 			home_screen(root);
 		}
 	} else {
+		// Missed. You loose one point.
 		round_score--;
+		// Refresh the score.
 		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
 	}
 }
@@ -402,13 +463,16 @@ function handleClick(rmj, current) {
 // Footer.
 const footer = document.createElement("div");
 footer.id = "footer";
+
 const footer_content = document.createElement("span");
 footer_content.classList.add("love");
+
 // TODO: Add neovim's logo!
 footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> with 💖 by Nano";
 
 footer.appendChild(footer_content);
 
+// Let's start a new drill!
 function game_on(dev = false) {
 	console.log("game on");
 	root.innerHTML = "";
@@ -422,15 +486,16 @@ function game_on(dev = false) {
 	make_game(dev);
 	kana_count = count_kanas(game);
 	drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
-	nextQuest();
+	next_quest();
 	return;
 }
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
 
+// Animated typing effect.
 async function write(content) {
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
 	let output = "";
 	for (const line of content) {
 		for (let i = 0; i < line.length; ++i) {
@@ -449,6 +514,7 @@ async function write(content) {
 	}
 }
 
+// Paint the home/start screen.
 function home_screen(root) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
@@ -459,6 +525,7 @@ function home_screen(root) {
 	root.appendChild(footer);
 }
 
+// Let's go!
 (function main() {
 	home_screen(root);
 })()
