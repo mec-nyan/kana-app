@@ -7,6 +7,7 @@ const APP_STATIC_RESOURCES = [
 	"/index.html",
 	"/styles.css",
 	"/main.js",
+	"/kanaapp.json",
 	"/fonts/HackNerdFont-Regular.ttf",
 	"/fonts/HackNerdFontPropo-Regular.ttf",
 	"/icons/kapp.png",
