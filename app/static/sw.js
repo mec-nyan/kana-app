@@ -35,6 +35,24 @@ self.addEventListener("activate", (e) => {
 				})
 			);
 			await clients.claim();
-		})
-	)
-})
+		})()
+	);
+});
+
+self.addEventListener("fetch", (e) => {
+	if (e.request.mode === "navigate") {
+		e.respondWith(caches.match("/"));
+		return;
+	}
+
+	e.respondWith(
+		(async () => {
+			const cache = caches.open(CACHE_NAME);
+			const cachedResponse = await cache.match(e.request.url);
+			if (cachedResponse) {
+				return cachedResponse;
+			}
+			return new Response(null, { status: 404 });
+		})()
+	);
+});
