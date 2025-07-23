@@ -4,11 +4,13 @@
 	"icons": [
 		{
 			"src": "icons/kapp.png",
-			"sizes": "128x128 256x256 512x512"
+			"sizes": "any",
+			"purpose": "any"
 		},
 		{
 			"src": "icons/kapp.svg",
-			"sizes": "any"
+			"sizes": "any",
+			"purpose": "maskable"
 		}
 	],
 	"short_name": "Kapp!",
@@ -17,5 +19,5 @@
 	"theme_color": "#1f1f2e",
 	"background_color": "#1f1f2e",
 	"orientation": "portrait",
-	"display": "fullscreen"
+	"display": "standalone"
 }
