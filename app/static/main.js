@@ -413,12 +413,15 @@ function next_quest() {
 // Print a hint (we'll replace this with audio).
 function hint_me(rmj) {
 	// No points if you asked for a hint haha.
-	hinted = true;
+	if (rmj !== "") {
+		hinted = true;
+	}
 	hint_display.innerHTML = `<span>Hint: <span class="info-highlighted">${rmj}</span></span>`;
 }
 
 //
 function handleClick(rmj, current) {
+	// console.log(`handleClick: ${rmj}`);
 	// This to know your accuracy.
 	num_tries++;
 
@@ -426,18 +429,19 @@ function handleClick(rmj, current) {
 	const right = rmj === current.romaji;
 
 	if (right) {
+		// console.log(`... right: ${current.hiragana}`);
 		// We're moving to the next kana, so...
 		if (!hinted) {
 			round_score++;
+			// console.log(`... not hinted! (score: ${round_score})`);
 		} else {
 			hinted = false;
+			// console.log(`... hinted! (score: ${round_score}`);
 		}
 
 		num_hits++;
 
 		drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count - num_hits} lerf\)</span>`;
-
-		score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
 
 		percentage = Math.min(Math.floor(100 / kana_count * num_hits), 100);
 
@@ -458,9 +462,9 @@ function handleClick(rmj, current) {
 	} else {
 		// Missed. You loose one point.
 		round_score--;
-		// Refresh the score.
-		score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
 	}
+	// Refresh the score.
+	score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
 }
 
 // Footer.
