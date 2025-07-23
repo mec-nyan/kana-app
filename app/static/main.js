@@ -464,7 +464,7 @@ function handleClick(rmj, current) {
 		round_score--;
 	}
 	// Refresh the score.
-	score_display.innerHTML = `<span>Score: <span class='score'>${total_score + round_score}</span></span>`;
+	score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score + round_score}</span></span>`;
 }
 
 // Footer.
