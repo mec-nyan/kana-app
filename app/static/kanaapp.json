@@ -13,6 +13,20 @@
 			"purpose": "maskable"
 		}
 	],
+	"screenshots": [
+		{
+			"src": "./screenshots/home.png",
+			"sizes": "720x1280",
+			"type": "image/png",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "./screenshots/home-wide.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide"
+		}
+	],
 	"short_name": "Kapp!",
 	"description": "Learn hiragana and katakana.",
 	"start_url": "/",
