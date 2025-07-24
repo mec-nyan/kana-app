@@ -53,7 +53,12 @@ self.addEventListener("fetch", (e) => {
 			if (cachedResponse) {
 				return cachedResponse;
 			}
-			return new Response(null, { status: 404 });
+			try {
+				const resp = await fetch(e.request);
+				return resp;
+			} catch (err) {
+				return new Response(null, { status: 404 });
+			}
 		})()
 	);
 });
