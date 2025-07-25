@@ -2,16 +2,18 @@ const VERSION = "v0.1.0-2";
 
 const CACHE_NAME = `kana-app-${VERSION}`;
 
+const GPATH = "/kana-app";
+
 const APP_STATIC_RESOURCES = [
-	"/",
-	"/index.html",
-	"/styles.css",
-	"/main.js",
-	"/kanaapp.json",
-	"/fonts/HackNerdFont-Regular.ttf",
-	"/fonts/HackNerdFontPropo-Regular.ttf",
-	"/icons/kapp.png",
-	"/icons/kapp.svg"
+	`${GPATH}/`,
+	`${GPATH}/index.html`,
+	`${GPATH}/styles.css`,
+	`${GPATH}/main.js`,
+	`${GPATH}/kanaapp.json`,
+	`${GPATH}/fonts/HackNerdFont-Regular.ttf`,
+	`${GPATH}/fonts/HackNerdFontPropo-Regular.ttf`,
+	`${GPATH}/icons/kapp.png`,
+	`${GPATH}/icons/kapp.svg`
 ]
 
 self.addEventListener("install", (e) => {
