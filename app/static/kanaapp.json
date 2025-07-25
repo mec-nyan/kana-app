@@ -1,5 +1,5 @@
 {
-	"id": "1234",
+	"id": "kapp",
 	"name": "Kana app",
 	"icons": [
 		{
@@ -15,13 +15,13 @@
 	],
 	"screenshots": [
 		{
-			"src": "./screenshots/home.png",
+			"src": "/kana-app/screenshots/home.png",
 			"sizes": "720x1280",
 			"type": "image/png",
 			"form_factor": "narrow"
 		},
 		{
-			"src": "./screenshots/home-wide.png",
+			"src": "/kana-app/screenshots/home-wide.png",
 			"sizes": "1280x720",
 			"type": "image/png",
 			"form_factor": "wide"
@@ -29,7 +29,8 @@
 	],
 	"short_name": "Kapp!",
 	"description": "Learn hiragana and katakana.",
-	"start_url": "/",
+	"scope": "/kana-app/",
+	"start_url": "/kana-app/",
 	"theme_color": "#1f1f2e",
 	"background_color": "#1f1f2e",
 	"orientation": "portrait",
