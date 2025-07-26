@@ -1,11 +1,10 @@
-const VERSION = "v0.1.0-2";
+const VERSION = "v0.1.0-3";
 
 const CACHE_NAME = `kana-app-${VERSION}`;
 
 const GPATH = "/kana-app";
 
 const APP_STATIC_RESOURCES = [
-	`${GPATH}/`,
 	`${GPATH}/index.html`,
 	`${GPATH}/styles.css`,
 	`${GPATH}/main.js`,
@@ -13,7 +12,9 @@ const APP_STATIC_RESOURCES = [
 	`${GPATH}/fonts/HackNerdFont-Regular.ttf`,
 	`${GPATH}/fonts/HackNerdFontPropo-Regular.ttf`,
 	`${GPATH}/icons/kapp.png`,
-	`${GPATH}/icons/kapp.svg`
+	`${GPATH}/icons/kapp.svg`,
+	`${GPATH}/screenshots/home.png`,
+	`${GPATH}/screenshots/home-wide.png`
 ]
 
 self.addEventListener("install", (e) => {
@@ -44,7 +45,7 @@ self.addEventListener("activate", (e) => {
 
 self.addEventListener("fetch", (e) => {
 	if (e.request.mode === "navigate") {
-		e.respondWith(caches.match(`${GPATH}/`));
+		e.respondWith(caches.match(`${GPATH}/index.html`));
 		return;
 	}
 
