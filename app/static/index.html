@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Kata</title>
 	<link rel="stylesheet" href="styles.css" />
-	<link rel="manifest" href="kanaapp.json" />
 	<link rel="icon" href="icons/kapp.svg" />
 </head>
 
@@ -14,20 +13,6 @@
 	<div id="root"></div>
 	<!-- <script src="main.js" type="module"></script> -->
 	<script src="main.js"></script>
-	<script>
-		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker.register("sw.js").then(
-				(registration) => {
-					console.log("Service worker registered:", registration);
-				},
-				(error) => {
-					console.error(`Service worker registration failed: ${error}`);
-				}
-			);
-		} else {
-			console.error("Service workers are not suppported.");
-		}
-	</script>
 </body>
 
 </html>
