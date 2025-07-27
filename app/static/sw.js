@@ -1,10 +1,11 @@
-const VERSION = "v0.1.0-3";
+const VERSION = "v0.1.0-4";
 
 const CACHE_NAME = `kana-app-${VERSION}`;
 
 const GPATH = "/kana-app";
 
 const APP_STATIC_RESOURCES = [
+	`${GPATH}/`,
 	`${GPATH}/index.html`,
 	`${GPATH}/styles.css`,
 	`${GPATH}/main.js`,
@@ -22,8 +23,8 @@ self.addEventListener("install", (e) => {
 		(async () => {
 			const cache = await caches.open(CACHE_NAME);
 			cache.addAll(APP_STATIC_RESOURCES);
-		})
-	)
+		})(),
+	);
 })
 
 self.addEventListener("activate", (e) => {
@@ -36,16 +37,16 @@ self.addEventListener("activate", (e) => {
 						return caches.delete(name);
 					}
 					return undefined;
-				})
+				}),
 			);
 			await clients.claim();
-		})()
+		})(),
 	);
 });
 
 self.addEventListener("fetch", (e) => {
 	if (e.request.mode === "navigate") {
-		e.respondWith(caches.match(`${GPATH}/index.html`));
+		e.respondWith(caches.match(`${GPATH}/`));
 		return;
 	}
 
@@ -62,6 +63,6 @@ self.addEventListener("fetch", (e) => {
 			} catch (err) {
 				return new Response(null, { status: 404 });
 			}
-		})()
+		})(),
 	);
 });
