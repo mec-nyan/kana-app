@@ -14,7 +14,8 @@
 	background: inherit;
 }
 
-html, body {
+html,
+body {
 	font-family: sans-serif;
 	background: hsl(243, 20%, 15%);
 	color: hsl(42, 30%, 70%);
@@ -34,20 +35,20 @@ html, body {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	height: 100dvh;
+	height: 100svh;
 	/* padding: 2rem; */
 }
 
 /* Just a placeholder for making a responsive desing later. */
 @media (orientation: portrait) {
 	#root {
-		width: 100dvw;
+		width: 100svw;
 	}
 }
 
 @media (orientation: landscape) {
 	#root {
-		width: 50dvh;
+		width: 50svh;
 		margin: 0 auto;
 	}
 }
@@ -99,9 +100,11 @@ html, body {
 	0% {
 		visibility: visible;
 	}
+
 	50% {
 		visibility: hidden;
 	}
+
 	100% {
 		visibility: visible;
 	}
@@ -140,9 +143,7 @@ html, body {
 	padding: 0.25rem;
 }
 
-#mode {
-
-}
+#mode {}
 
 #progress {
 	/* border: 2px solid orange; */
@@ -157,10 +158,10 @@ html, body {
 
 #bar {
 	background: linear-gradient(to right,
-		hsl(262, 30%, 50%),
-		hsl(222, 30%, 50%),
-		hsl(182, 30%, 50%),
-		hsl(142, 30%, 50%));
+			hsl(262, 30%, 50%),
+			hsl(222, 30%, 50%),
+			hsl(182, 30%, 50%),
+			hsl(142, 30%, 50%));
 	width: 100%;
 	height: 0.2rem;
 	/* border-radius: 0.2rem; */
@@ -191,7 +192,12 @@ html, body {
 	justify-content: center;
 	align-items: center;
 	font-size: 16rem;
-	font-family: serif;
+	/* TODO: serif fonts look great in japanese!
+	* Add an option for the user to select the font.
+	* Also, load fonts that support that (just in case).
+	* BTW, in japanese we describe the fonts as "gothic" or "mincho".*/
+	/* font-family: serif; */
+	font-family: sans-serif;
 }
 
 #separator {
