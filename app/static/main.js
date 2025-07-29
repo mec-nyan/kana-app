@@ -1,6 +1,43 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+// TODO: Put this code in the appropriate place.
+// >>> Start audio processing.
+const audioCtx = new (window.AudioContext)();
+let audioBuffer = null;
+
+// Try the first five sounds.
+const segments = {
+	"a": [0, 0.5],
+	"i": [0.5, 0.5],
+	"u": [1, 0.5],
+	"e": [1.5, 0.5],
+	"o": [2, 0.5]
+}
+
+fetch("./sounds/jp_sounds.mp3")
+	.then(resp => resp.arrayBuffer())
+	.then(arrBuf => audioCtx.decodeAudioData(arrBuf))
+	.then(data => {
+		audioBuffer = data;
+		console.log("Audio file has been loaded!");
+	})
+	.catch(e => console.error(`Error loading audio: ${e}`));
+
+function play(romaji) {
+	if (!audioBuffer) {
+		console.error("Audio not loaded yet!");
+		return;
+	}
+
+	const [start, duration] = segments[romaji];
+	const source = audioCtx.createBufferSource();
+	source.buffer = audioBuffer;
+	source.connect(audioCtx.destination);
+	source.start(0, start, duration);
+}
+// <<< End audio processing.
+
 // Container for term-ish info pane.
 const top_container = document.createElement("div");
 top_container.id = "top-container";
@@ -258,7 +295,8 @@ function count_kanas(game) {
 function make_game(dev = false) {
 	let game_map = [...kana_map];
 	if (dev) {
-		game_map = [kana_map[0], kana_map[1]];
+		// Try out sound, let's just use the first five kanas.
+		game_map = [kana_map[0]];
 	}
 	game_map.forEach(row => {
 		let game_row = {
@@ -336,6 +374,19 @@ function next() {
 	return [row, col];
 }
 
+function makeHandler(rmj) {
+	return function() {
+		hint_me(rmj)
+
+		const validSounds = ["a", "i", "u", "e", "o"];
+		if (validSounds.includes(rmj)) {
+			console.log(`"${rmj}" is here!`);
+			play(rmj);
+		}
+	}
+}
+
+let soundHandler = () => {};
 
 // Show the next screen in the drill.
 // Set congrats message if we've completed this round.
@@ -366,8 +417,12 @@ function next_quest() {
 	// This is the kana we need to guess correctly:
 	let current_kana = row[ncol];
 	kana.textContent = current_kana.hiragana;
+
+	// First, remove the previous handler.
+	kana.removeEventListener("click", soundHandler);
+	soundHandler = makeHandler(current_kana.romaji);
 	// Show a hint. We'll replace this with audio soon.
-	kana.addEventListener("click", () => hint_me(current_kana.romaji));
+	kana.addEventListener("click", soundHandler);
 
 	// If we are in the "ya" block, use some fillers because this row only has three kanas.
 	if (block.name === "ya") {
