@@ -24,13 +24,17 @@ fetch("./sounds/jp_sounds.mp3")
 	})
 	.catch(e => console.error(`Error loading audio: ${e}`));
 
-function play(romaji) {
+function playHint(romaji) {
+	const [start, duration] = segments[romaji];
+	playKana({ start: start, duration: duration });
+}
+
+function playKana({ start, duration }) {
 	if (!audioBuffer) {
 		console.error("Audio not loaded yet!");
 		return;
 	}
 
-	const [start, duration] = segments[romaji];
 	const source = audioCtx.createBufferSource();
 	source.buffer = audioBuffer;
 	source.connect(audioCtx.destination);
@@ -163,99 +167,99 @@ const kana_map = [
 	{
 		name: "a",
 		kanas: [
-			{ romaji: "a", hiragana: "あ" },
-			{ romaji: "i", hiragana: "い" },
-			{ romaji: "u", hiragana: "う" },
-			{ romaji: "e", hiragana: "え" },
-			{ romaji: "o", hiragana: "お" },
+			{ romaji: "a", hiragana: "あ", start: 0, duration: 0.5 },
+			{ romaji: "i", hiragana: "い", start: 0.5, duration: 0.5 },
+			{ romaji: "u", hiragana: "う", start: 1, duration: 0.5 },
+			{ romaji: "e", hiragana: "え", start: 1.5, duration: 0.5 },
+			{ romaji: "o", hiragana: "お", start: 2, duration: 0.5 },
 		],
 	},
 	{
 		name: "ka",
 		kanas: [
-			{ romaji: "ka", hiragana: "か" },
-			{ romaji: "ki", hiragana: "き" },
-			{ romaji: "ku", hiragana: "く" },
-			{ romaji: "ke", hiragana: "け" },
-			{ romaji: "ko", hiragana: "こ" },
+			{ romaji: "ka", hiragana: "か", start: 2.5, duration: 0.5 },
+			{ romaji: "ki", hiragana: "き", start: 3.2, duration: 0.5 },
+			{ romaji: "ku", hiragana: "く", start: 3.8, duration: 0.5 },
+			{ romaji: "ke", hiragana: "け", start: 4.4, duration: 0.5 },
+			{ romaji: "ko", hiragana: "こ", start: 5, duration: 0.5 },
 		]
 	},
 	{
 		name: "sa",
 		kanas: [
-			{ romaji: "sa", hiragana: "さ" },
-			{ romaji: "shi", hiragana: "し" },
-			{ romaji: "su", hiragana: "す" },
-			{ romaji: "se", hiragana: "せ" },
-			{ romaji: "so", hiragana: "そ" },
+			{ romaji: "sa", hiragana: "さ", start: 0, duration: 0.5 },
+			{ romaji: "shi", hiragana: "し", start: 0, duration: 0.5 },
+			{ romaji: "su", hiragana: "す", start: 0, duration: 0.5 },
+			{ romaji: "se", hiragana: "せ", start: 0, duration: 0.5 },
+			{ romaji: "so", hiragana: "そ", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "ta",
 		kanas: [
-			{ romaji: "ta", hiragana: "た" },
-			{ romaji: "chi", hiragana: "ち" },
-			{ romaji: "tsu", hiragana: "つ" },
-			{ romaji: "te", hiragana: "て" },
-			{ romaji: "to", hiragana: "と" },
+			{ romaji: "ta", hiragana: "た", start: 0, duration: 0.5 },
+			{ romaji: "chi", hiragana: "ち", start: 0, duration: 0.5 },
+			{ romaji: "tsu", hiragana: "つ", start: 0, duration: 0.5 },
+			{ romaji: "te", hiragana: "て", start: 0, duration: 0.5 },
+			{ romaji: "to", hiragana: "と", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "na",
 		kanas: [
-			{ romaji: "na", hiragana: "な" },
-			{ romaji: "ni", hiragana: "に" },
-			{ romaji: "nu", hiragana: "ぬ" },
-			{ romaji: "ne", hiragana: "ね" },
-			{ romaji: "no", hiragana: "の" },
+			{ romaji: "na", hiragana: "な", start: 0, duration: 0.5 },
+			{ romaji: "ni", hiragana: "に", start: 0, duration: 0.5 },
+			{ romaji: "nu", hiragana: "ぬ", start: 0, duration: 0.5 },
+			{ romaji: "ne", hiragana: "ね", start: 0, duration: 0.5 },
+			{ romaji: "no", hiragana: "の", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "ha",
 		kanas: [
-			{ romaji: "ha", hiragana: "は" },
-			{ romaji: "hi", hiragana: "ひ" },
-			{ romaji: "fu", hiragana: "ふ" },
-			{ romaji: "he", hiragana: "へ" },
-			{ romaji: "ho", hiragana: "ほ" },
+			{ romaji: "ha", hiragana: "は", start: 0, duration: 0.5 },
+			{ romaji: "hi", hiragana: "ひ", start: 0, duration: 0.5 },
+			{ romaji: "fu", hiragana: "ふ", start: 0, duration: 0.5 },
+			{ romaji: "he", hiragana: "へ", start: 0, duration: 0.5 },
+			{ romaji: "ho", hiragana: "ほ", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "ma",
 		kanas: [
-			{ romaji: "ma", hiragana: "ま" },
-			{ romaji: "mi", hiragana: "み" },
-			{ romaji: "mu", hiragana: "む" },
-			{ romaji: "me", hiragana: "め" },
-			{ romaji: "mo", hiragana: "も" },
+			{ romaji: "ma", hiragana: "ま", start: 0, duration: 0.5 },
+			{ romaji: "mi", hiragana: "み", start: 0, duration: 0.5 },
+			{ romaji: "mu", hiragana: "む", start: 0, duration: 0.5 },
+			{ romaji: "me", hiragana: "め", start: 0, duration: 0.5 },
+			{ romaji: "mo", hiragana: "も", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "ya",
 		kanas: [
-			{ romaji: "ya", hiragana: "や" },
-			{ romaji: "yu", hiragana: "ゆ" },
-			{ romaji: "yo", hiragana: "よ" },
+			{ romaji: "ya", hiragana: "や", start: 0, duration: 0.5 },
+			{ romaji: "yu", hiragana: "ゆ", start: 0, duration: 0.5 },
+			{ romaji: "yo", hiragana: "よ", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "ra",
 		kanas: [
-			{ romaji: "ra", hiragana: "ら" },
-			{ romaji: "ri", hiragana: "り" },
-			{ romaji: "ru", hiragana: "る" },
-			{ romaji: "re", hiragana: "れ" },
-			{ romaji: "ro", hiragana: "ろ" },
+			{ romaji: "ra", hiragana: "ら", start: 0, duration: 0.5 },
+			{ romaji: "ri", hiragana: "り", start: 0, duration: 0.5 },
+			{ romaji: "ru", hiragana: "る", start: 0, duration: 0.5 },
+			{ romaji: "re", hiragana: "れ", start: 0, duration: 0.5 },
+			{ romaji: "ro", hiragana: "ろ", start: 0, duration: 0.5 },
 		]
 	},
 	{
 		name: "wa",
 		kanas: [
-			{ romaji: "wa", hiragana: "わ" },
-			{ romaji: "i", hiragana: "ゐ" },
-			{ romaji: "n", hiragana: "ん" },
-			{ romaji: "e", hiragana: "ゑ" },
-			{ romaji: "wo", hiragana: "を" },
+			{ romaji: "wa", hiragana: "わ", start: 0, duration: 0.5 },
+			{ romaji: "i", hiragana: "ゐ", start: 0, duration: 0.5 },
+			{ romaji: "n", hiragana: "ん", start: 0, duration: 0.5 },
+			{ romaji: "e", hiragana: "ゑ", start: 0, duration: 0.5 },
+			{ romaji: "wo", hiragana: "を", start: 0, duration: 0.5 },
 		]
 	},
 ];
@@ -308,6 +312,8 @@ function make_game(dev = false) {
 			let game_kana = {
 				romaji: kana.romaji,
 				hiragana: kana.hiragana,
+				start: kana.start,
+				duration: kana.duration,
 				shown: false,
 			};
 			game_row.kanas = [...game_row.kanas, game_kana];
@@ -381,12 +387,12 @@ function makeHandler(rmj) {
 		const validSounds = ["a", "i", "u", "e", "o"];
 		if (validSounds.includes(rmj)) {
 			console.log(`"${rmj}" is here!`);
-			play(rmj);
+			playHint(rmj);
 		}
 	}
 }
 
-let soundHandler = () => {};
+let soundHandler = () => { };
 
 // Show the next screen in the drill.
 // Set congrats message if we've completed this round.
@@ -462,6 +468,7 @@ function next_quest() {
 		romaji_bar.appendChild(btn);
 	})
 
+	playKana({ start: current_kana.start, duration: current_kana.duration });
 	return true;
 }
 
