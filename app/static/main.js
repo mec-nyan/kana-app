@@ -12,6 +12,10 @@ function toggleTheme() {
 	}
 }
 
+const themeSwitch = document.createElement("input");
+themeSwitch.type = "checkbox";
+themeSwitch.id = "theme-switch";
+
 const header = document.createElement("div");
 header.id = "header";
 
@@ -22,7 +26,8 @@ menu.innerText = "󰍜";
 const h3 = document.createElement("h3");
 h3.innerHTML = "Kana App!";
 
-const themeSelector = document.createElement("div");
+const themeSelector = document.createElement("label");
+themeSelector.htmlFor = "theme-switch";
 themeSelector.id = "theme-sel";
 themeSelector.innerText = "";
 themeSelector.addEventListener("click", () => {
@@ -622,6 +627,7 @@ function home_screen(root) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(term);
+	root.appendChild(themeSwitch);
 	root.appendChild(header);
 	root.appendChild(actions_pane);
 	root.appendChild(top_container);
