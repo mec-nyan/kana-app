@@ -167,99 +167,99 @@ const kana_map = [
 	{
 		name: "a",
 		kanas: [
-			{ romaji: "a", hiragana: "あ", start: 0, duration: 0.5 },
-			{ romaji: "i", hiragana: "い", start: 0.5, duration: 0.5 },
-			{ romaji: "u", hiragana: "う", start: 1, duration: 0.5 },
-			{ romaji: "e", hiragana: "え", start: 1.5, duration: 0.5 },
-			{ romaji: "o", hiragana: "お", start: 2, duration: 0.5 },
+			{ romaji: "a", hiragana: "あ", start: 0, duration: 0.6 },
+			{ romaji: "i", hiragana: "い", start: 0.5, duration: 0.6 },
+			{ romaji: "u", hiragana: "う", start: 1.1, duration: 0.6 },
+			{ romaji: "e", hiragana: "え", start: 1.8, duration: 0.6 },
+			{ romaji: "o", hiragana: "お", start: 2.4, duration: 0.6 },
 		],
 	},
 	{
 		name: "ka",
 		kanas: [
-			{ romaji: "ka", hiragana: "か", start: 2.5, duration: 0.5 },
-			{ romaji: "ki", hiragana: "き", start: 3.2, duration: 0.5 },
-			{ romaji: "ku", hiragana: "く", start: 3.8, duration: 0.5 },
-			{ romaji: "ke", hiragana: "け", start: 4.4, duration: 0.5 },
-			{ romaji: "ko", hiragana: "こ", start: 5, duration: 0.5 },
+			{ romaji: "ka", hiragana: "か", start: 3.1, duration: 0.6 },
+			{ romaji: "ki", hiragana: "き", start: 3.7, duration: 0.6 },
+			{ romaji: "ku", hiragana: "く", start: 4.4, duration: 0.6 },
+			{ romaji: "ke", hiragana: "け", start: 5, duration: 0.6 },
+			{ romaji: "ko", hiragana: "こ", start: 5.7, duration: 0.6 },
 		]
 	},
 	{
 		name: "sa",
 		kanas: [
-			{ romaji: "sa", hiragana: "さ", start: 5.5, duration: 0.5 },
-			{ romaji: "shi", hiragana: "し", start: 6.1, duration: 0.5 },
-			{ romaji: "su", hiragana: "す", start: 6.7, duration: 0.5 },
-			{ romaji: "se", hiragana: "せ", start: 7.4, duration: 0.5 },
-			{ romaji: "so", hiragana: "そ", start: 8, duration: 0.5 },
+			{ romaji: "sa", hiragana: "さ", start: 6.4, duration: 0.6 },
+			{ romaji: "shi", hiragana: "し", start: 7.1, duration: 0.6 },
+			{ romaji: "su", hiragana: "す", start: 7.8, duration: 0.6 },
+			{ romaji: "se", hiragana: "せ", start: 8.4, duration: 0.6 },
+			{ romaji: "so", hiragana: "そ", start: 9.1, duration: 0.6 },
 		]
 	},
 	{
 		name: "ta",
 		kanas: [
-			{ romaji: "ta", hiragana: "た", start: 8.6, duration: 0.5 },
-			{ romaji: "chi", hiragana: "ち", start: 9.2, duration: 0.5 },
-			{ romaji: "tsu", hiragana: "つ", start: 9.8, duration: 0.5 },
-			{ romaji: "te", hiragana: "て", start: 10.4, duration: 0.5 },
-			{ romaji: "to", hiragana: "と", start: 11, duration: 0.5 },
+			{ romaji: "ta", hiragana: "た", start: 9.8, duration: 0.6 },
+			{ romaji: "chi", hiragana: "ち", start: 10.4, duration: 0.6 },
+			{ romaji: "tsu", hiragana: "つ", start: 11.1, duration: 0.6 },
+			{ romaji: "te", hiragana: "て", start: 11.7, duration: 0.6 },
+			{ romaji: "to", hiragana: "と", start: 12.3, duration: 0.6 },
 		]
 	},
 	{
 		name: "na",
 		kanas: [
-			{ romaji: "na", hiragana: "な", start: 11.5, duration: 0.5 },
-			{ romaji: "ni", hiragana: "に", start: 12.2, duration: 0.5 },
-			{ romaji: "nu", hiragana: "ぬ", start: 12.7, duration: 0.5 },
-			{ romaji: "ne", hiragana: "ね", start: 13.4, duration: 0.5 },
-			{ romaji: "no", hiragana: "の", start: 14, duration: 0.5 },
+			{ romaji: "na", hiragana: "な", start: 12.9, duration: 0.6 },
+			{ romaji: "ni", hiragana: "に", start: 13.6, duration: 0.6 },
+			{ romaji: "nu", hiragana: "ぬ", start: 14.3, duration: 0.6 },
+			{ romaji: "ne", hiragana: "ね", start: 15, duration: 0.6 },
+			{ romaji: "no", hiragana: "の", start: 15.6, duration: 0.6 },
 		]
 	},
 	{
 		name: "ha",
 		kanas: [
-			{ romaji: "ha", hiragana: "は", start: 14.6, duration: 0.5 },
-			{ romaji: "hi", hiragana: "ひ", start: 15.2, duration: 0.5 },
-			{ romaji: "fu", hiragana: "ふ", start: 15.8, duration: 0.5 },
-			{ romaji: "he", hiragana: "へ", start: 16.5, duration: 0.5 },
-			{ romaji: "ho", hiragana: "ほ", start: 17.1, duration: 0.5 },
+			{ romaji: "ha", hiragana: "は", start: 16.3, duration: 0.6 },
+			{ romaji: "hi", hiragana: "ひ", start: 17.0, duration: 0.6 },
+			{ romaji: "fu", hiragana: "ふ", start: 17.6, duration: 0.6 },
+			{ romaji: "he", hiragana: "へ", start: 18.2, duration: 0.6 },
+			{ romaji: "ho", hiragana: "ほ", start: 18.9, duration: 0.6 },
 		]
 	},
 	{
 		name: "ma",
 		kanas: [
-			{ romaji: "ma", hiragana: "ま", start: 17.7, duration: 0.5 },
-			{ romaji: "mi", hiragana: "み", start: 18.3, duration: 0.5 },
-			{ romaji: "mu", hiragana: "む", start: 18.8, duration: 0.5 },
-			{ romaji: "me", hiragana: "め", start: 19.4, duration: 0.5 },
-			{ romaji: "mo", hiragana: "も", start: 20, duration: 0.5 },
+			{ romaji: "ma", hiragana: "ま", start: 19.6, duration: 0.6 },
+			{ romaji: "mi", hiragana: "み", start: 20.2, duration: 0.6 },
+			{ romaji: "mu", hiragana: "む", start: 20.8, duration: 0.6 },
+			{ romaji: "me", hiragana: "め", start: 21.5, duration: 0.6 },
+			{ romaji: "mo", hiragana: "も", start: 22.1, duration: 0.6 },
 		]
 	},
 	{
 		name: "ya",
 		kanas: [
-			{ romaji: "ya", hiragana: "や", start: 20.6, duration: 0.5 },
-			{ romaji: "yu", hiragana: "ゆ", start: 21.2, duration: 0.5 },
-			{ romaji: "yo", hiragana: "よ", start: 21.7, duration: 0.5 },
+			{ romaji: "ya", hiragana: "や", start: 22.8, duration: 0.6 },
+			{ romaji: "yu", hiragana: "ゆ", start: 23.5, duration: 0.6 },
+			{ romaji: "yo", hiragana: "よ", start: 24.1, duration: 0.6 },
 		]
 	},
 	{
 		name: "ra",
 		kanas: [
-			{ romaji: "ra", hiragana: "ら", start: 0, duration: 0.5 },
-			{ romaji: "ri", hiragana: "り", start: 0, duration: 0.5 },
-			{ romaji: "ru", hiragana: "る", start: 0, duration: 0.5 },
-			{ romaji: "re", hiragana: "れ", start: 0, duration: 0.5 },
-			{ romaji: "ro", hiragana: "ろ", start: 0, duration: 0.5 },
+			{ romaji: "ra", hiragana: "ら", start: 24.8, duration: 0.6 },
+			{ romaji: "ri", hiragana: "り", start: 25.6, duration: 0.6 },
+			{ romaji: "ru", hiragana: "る", start: 26.1, duration: 0.6 },
+			{ romaji: "re", hiragana: "れ", start: 26.7, duration: 0.6 },
+			{ romaji: "ro", hiragana: "ろ", start: 27.4, duration: 0.6 },
 		]
 	},
 	{
 		name: "wa",
 		kanas: [
-			{ romaji: "wa", hiragana: "わ", start: 22.4, duration: 0.5 },
-			{ romaji: "i", hiragana: "ゐ", start: 0, duration: 0.5 },
-			{ romaji: "n", hiragana: "ん", start: 23, duration: 0.5 },
-			{ romaji: "e", hiragana: "ゑ", start: 0, duration: 0.5 },
-			{ romaji: "wo", hiragana: "を", start: 23.5, duration: 0.5 },
+			{ romaji: "wa", hiragana: "わ", start: 28.0, duration: 0.6 },
+			{ romaji: "i", hiragana: "ゐ", start: 0.5, duration: 0.6 },
+			{ romaji: "n", hiragana: "ん", start: 28.8, duration: 0.6 },
+			{ romaji: "e", hiragana: "ゑ", start: 1.8, duration: 0.6 },
+			{ romaji: "wo", hiragana: "を", start: 29.4, duration: 0.6 },
 		]
 	},
 ];
