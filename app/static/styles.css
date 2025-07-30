@@ -83,6 +83,30 @@ body {
 	}
 }
 
+#header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 100%;
+	padding: 1rem 1.5rem;
+
+	font-family: "Hack Nerd Font";
+
+	background: var(--mantle);
+	border-bottom: 1px solid var(--surface0);
+}
+
+#header h3 {
+	font-size: 1rem;
+	color: var(--blue);
+}
+
+#menu, #theme-sel {
+	font-size: 1.5rem;
+	color: var(--surface2);
+}
 
 #top-container {
 	padding: 0.5rem;

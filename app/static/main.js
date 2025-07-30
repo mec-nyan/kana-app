@@ -1,6 +1,20 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+const header = document.createElement("div");
+header.id = "header";
+const menu = document.createElement("div");
+menu.id = "menu";
+menu.innerText = "󰍜";
+const h3 = document.createElement("h3");
+h3.innerHTML = "Kana App!";
+const themeSelector = document.createElement("div");
+themeSelector.id = "theme-sel";
+themeSelector.innerText = "";
+header.appendChild(menu);
+header.appendChild(h3);
+header.appendChild(themeSelector);
+
 // TODO: Put this code in the appropriate place.
 // >>> Start audio processing.
 const audioCtx = new (window.AudioContext)();
@@ -589,10 +603,11 @@ function home_screen(root) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(term);
-	write(term_content);
-	root.appendChild(top_container);
+	root.appendChild(header);
 	root.appendChild(actions_pane);
+	root.appendChild(top_container);
 	root.appendChild(footer);
+	write(term_content);
 }
 
 // Let's go!
