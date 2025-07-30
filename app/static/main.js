@@ -1,16 +1,35 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+let theme = "dark";
+function toggleTheme() {
+	if (theme === "dark") {
+		theme = "light";
+		themeSelector.innerText = "";
+	} else {
+		theme = "dark";
+		themeSelector.innerText = "";
+	}
+}
+
 const header = document.createElement("div");
 header.id = "header";
+
 const menu = document.createElement("div");
 menu.id = "menu";
 menu.innerText = "󰍜";
+
 const h3 = document.createElement("h3");
 h3.innerHTML = "Kana App!";
+
 const themeSelector = document.createElement("div");
 themeSelector.id = "theme-sel";
 themeSelector.innerText = "";
+themeSelector.addEventListener("click", () => {
+	toggleTheme();
+	// home_screen(root);
+});
+
 header.appendChild(menu);
 header.appendChild(h3);
 header.appendChild(themeSelector);
