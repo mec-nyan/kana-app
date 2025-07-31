@@ -157,16 +157,21 @@ const progress_tag = document.createElement("div");
 progress_tag.className = "info";
 progress_tag.innerHTML = `<span>Progress:&nbsp;<span class='info-highlighted'>${percentage}%</span></span>`;
 
+const barContainer = document.createElement("div");
+barContainer.id = "bar-container";
+
 const bar = document.createElement("div");
 bar.id = "bar";
+
 const bar_inner = document.createElement("div");
 bar_inner.id = "inner";
 bar_inner.style.width = "100%";
 
 bar.appendChild(bar_inner);
+barContainer.appendChild(bar);
 
 progress.appendChild(progress_tag);
-progress.appendChild(bar);
+progress.appendChild(barContainer);
 
 
 // We'll use these for our score system.

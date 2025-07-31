@@ -250,6 +250,12 @@ body {
 	color: var(--blue);
 }
 
+#bar-container {
+	width: 100%;
+	/* border: 1px solid red; */
+	padding: 0px 0.5rem;
+}
+
 #bar {
 	background: linear-gradient(to right,
 			var(--maroon),
@@ -259,9 +265,9 @@ body {
 	width: 100%;
 	height: 0.4rem;
 	border-radius: 0.2rem;
-	margin-left: 0.5rem;
-	position: relative;
-	bottom: 0.15rem;
+	/* margin-left: 0.5rem; */
+	/* position: relative; */
+	/* bottom: 0.15rem; */
 	overflow: hidden;
 	display: flex;
 	justify-content: right;
@@ -316,7 +322,7 @@ body {
 .romaji-button {
 	/* border: 1px solid green; */
 
-	background: var(--sky);
+	background: var(--sapphire);
 	color: var(--base);
 	display: flex;
 	justify-content: center;
