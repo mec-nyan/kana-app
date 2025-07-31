@@ -42,14 +42,6 @@ header.appendChild(themeSelector);
 const audioCtx = new (window.AudioContext)();
 let audioBuffer = null;
 
-// Try the first five sounds.
-const segments = {
-	"a": [0, 0.5],
-	"i": [0.5, 0.5],
-	"u": [1, 0.5],
-	"e": [1.5, 0.5],
-	"o": [2, 0.5]
-}
 
 fetch("./sounds/jp_sounds.mp3")
 	.then(resp => resp.arrayBuffer())
@@ -59,11 +51,6 @@ fetch("./sounds/jp_sounds.mp3")
 		console.log("Audio file has been loaded!");
 	})
 	.catch(e => console.error(`Error loading audio: ${e}`));
-
-function playHint(romaji) {
-	const [start, duration] = segments[romaji];
-	playKana({ start: start, duration: duration });
-}
 
 function playKana({ start, duration }) {
 	if (!audioBuffer) {
@@ -422,15 +409,10 @@ function next() {
 	return [row, col];
 }
 
-function makeHandler(rmj) {
+function makeHandler({ rmj, start, duration }) {
 	return function() {
 		hint_me(rmj)
-
-		const validSounds = ["a", "i", "u", "e", "o"];
-		if (validSounds.includes(rmj)) {
-			console.log(`"${rmj}" is here!`);
-			playHint(rmj);
-		}
+		playKana({ start: start, duration: duration });
 	}
 }
 
@@ -468,7 +450,11 @@ function next_quest() {
 
 	// First, remove the previous handler.
 	kana.removeEventListener("click", soundHandler);
-	soundHandler = makeHandler(current_kana.romaji);
+	soundHandler = makeHandler({
+		rmj: current_kana.romaji,
+		start: current_kana.start,
+		duration: current_kana.duration,
+	});
 	// Show a hint. We'll replace this with audio soon.
 	kana.addEventListener("click", soundHandler);
 
