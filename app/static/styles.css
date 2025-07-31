@@ -348,6 +348,42 @@ body {
 	color: var(--teal);
 }
 
-#theme-switch:checked ~ #root {
-	background: var(--latte-base);
+#theme-switch:checked~#root {
+	background: var(--latte-surface0);
+}
+
+#theme-switch:checked~* #header {
+	background: var(--latte-surface1);
+	border-bottom: 1px solid var(--latte-overlay0);
+}
+
+#theme-switch:checked~* h3 {
+	color: var(--latte-text);
+}
+
+#theme-switch:checked~* #menu,
+#theme-switch:checked~* #theme-sel {
+	color: var(--latte-text);
+}
+
+#theme-switch:checked~* #term {
+	background: var(--latte-surface1);
+	border: 1px solid var(--latte-overlay0);
+	color: var(--latte-text);
+}
+
+#theme-switch:checked~* .opt,
+#theme-switch:checked~* #start-button {
+	background: var(--latte-surface1);
+	color: var(--latte-sky);
+	border-color: var(--latte-sky);
+}
+
+#theme-switch:checked~* #start-button {
+	color: var(--latte-pink);
+	border-color: var(--latte-pink);
+}
+
+#theme-switch:checked~* .green {
+	color: var(--latte-sapphire);
 }
