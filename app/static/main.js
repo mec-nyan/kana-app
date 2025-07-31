@@ -1,6 +1,8 @@
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+const themeSwitch = document.getElementById("theme-switch");
+
 let theme = "dark";
 function toggleTheme() {
 	if (theme === "dark") {
@@ -11,10 +13,6 @@ function toggleTheme() {
 		themeSelector.innerText = "";
 	}
 }
-
-const themeSwitch = document.createElement("input");
-themeSwitch.type = "checkbox";
-themeSwitch.id = "theme-switch";
 
 const header = document.createElement("div");
 header.id = "header";
@@ -627,7 +625,6 @@ function home_screen(root) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(term);
-	root.appendChild(themeSwitch);
 	root.appendChild(header);
 	root.appendChild(actions_pane);
 	root.appendChild(top_container);
