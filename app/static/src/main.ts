@@ -54,10 +54,10 @@ header.appendChild(themeSelector);
 // TODO: Put this code in the appropriate place.
 // >>> Start audio processing.
 const audioCtx = new (window.AudioContext)();
-let audioBuffer = null;
+let audioBuffer: AudioBuffer;
 
 
-fetch("/sounds/jp_sounds.mp3")
+fetch("/kana-app/sounds/jp_sounds.mp3")
 	.then(resp => resp.arrayBuffer())
 	.then(arrBuf => audioCtx.decodeAudioData(arrBuf))
 	.then(data => {
@@ -66,7 +66,7 @@ fetch("/sounds/jp_sounds.mp3")
 	})
 	.catch(e => console.error(`Error loading audio: ${e}`));
 
-function playKana({ start, duration }) {
+function playKana({ start, duration }: {start: number; duration: number}) {
 	if (!audioBuffer) {
 		console.error("Audio not loaded yet!");
 		return;
