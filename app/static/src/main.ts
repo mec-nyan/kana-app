@@ -1,3 +1,17 @@
+// Register service worker.
+if ("serviceWorker" in navigator) {
+	navigator.serviceWorker.register("sw.js").then(
+		(registration) => {
+			console.log("Service worker registered:", registration);
+		},
+		(error) => {
+			console.error(`Service worker registration failed: ${error}`);
+		}
+	);
+} else {
+	console.error("Service workers are not suppported.");
+}
+
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
