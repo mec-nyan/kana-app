@@ -237,6 +237,13 @@ body {
 	padding: 0.25rem;
 }
 
+#tip {
+	padding: 0.5rem;
+	font-size: 0.8rem;
+	text-align: center;
+	color: var(--overlay1);
+}
+
 #mode {}
 
 #progress {
@@ -435,4 +442,8 @@ body {
 	background: linear-gradient(to right,
 			var(--latte-sapphire),
 			var(--latte-pink));
+}
+
+#theme-switch:checked~* #tip {
+	color: var(--latte-overlay0);
 }

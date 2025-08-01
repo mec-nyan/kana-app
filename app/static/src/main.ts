@@ -66,7 +66,7 @@ fetch("/kana-app/sounds/jp_sounds.mp3")
 	})
 	.catch(e => console.error(`Error loading audio: ${e}`));
 
-function playKana({ start, duration }: {start: number; duration: number}) {
+function playKana({ start, duration }: { start: number; duration: number }) {
 	if (!audioBuffer) {
 		console.error("Audio not loaded yet!");
 		return;
@@ -189,19 +189,16 @@ score_display.className = "info";
 score_display.innerHTML = `<span>Score: <span class='info-highlighted'>${total_score}</span></span>`;
 
 
-// Show a hint (we'll be playing the sound soon!).
-const hint_display = document.createElement("div");
-hint_display.id = "hint";
-hint_display.classList.add("info");
-
-hint_display.innerHTML = `<span>Hint:</span>`
-
 // Compose the info pane:
 top_info.appendChild(mode);
 top_info.appendChild(drill_info);
 top_info.appendChild(progress);
 top_info.appendChild(score_display);
-top_info.appendChild(hint_display)
+
+// Display a tip.
+const tip = document.createElement("div");
+tip.id = "tip";
+tip.innerHTML = "<em>Tip: touch the hiragana to listen again.</em>"
 
 const duration = 0.56;
 
@@ -520,7 +517,6 @@ function hint_me(rmj) {
 	if (rmj !== "") {
 		hinted = true;
 	}
-	hint_display.innerHTML = `<span>Hint: <span class="info-highlighted">${rmj}</span></span>`;
 }
 
 //
@@ -589,6 +585,7 @@ function game_on(dev = false) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(top_info);
+	top_container.appendChild(tip);
 	root.appendChild(top_container);
 	root.appendChild(kana);
 	root.appendChild(separator);
