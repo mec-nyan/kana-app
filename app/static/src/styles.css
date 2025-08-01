@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "Hack Nerd Font";
-	src: url('./fonts/HackNerdFontPropo-Regular.ttf') format('truetype');
+	src: url('../public/fonts/HackNerdFontPropo-Regular.ttf') format('truetype');
 }
 
 :root {

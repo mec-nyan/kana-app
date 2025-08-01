@@ -43,7 +43,7 @@ const audioCtx = new (window.AudioContext)();
 let audioBuffer = null;
 
 
-fetch("./sounds/jp_sounds.mp3")
+fetch("/sounds/jp_sounds.mp3")
 	.then(resp => resp.arrayBuffer())
 	.then(arrBuf => audioCtx.decodeAudioData(arrBuf))
 	.then(data => {

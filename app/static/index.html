@@ -6,19 +6,18 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Kata</title>
-	<link rel="stylesheet" href="styles.css" />
-	<link rel="manifest" href="kanaapp.json" />
-	<link rel="icon" href="icons/kapp.svg" />
+	<link rel="stylesheet" href="src/styles.css" />
+	<link rel="manifest" href="public/kanaapp.json" />
+	<link rel="icon" href="public/icons/kapp.svg" />
 </head>
 
 <body>
 	<input type="checkbox" id="theme-switch" style="display:none;" />
 	<div id="root"></div>
-	<!-- <script src="main.js" type="module"></script> -->
-	<script src="main.js"></script>
+	<script src="src/main.js"></script>
 	<script>
 		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker.register("sw.js").then(
+			navigator.serviceWorker.register("public/sw.js").then(
 				(registration) => {
 					console.log("Service worker registered:", registration);
 				},
