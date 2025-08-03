@@ -15,8 +15,6 @@ if ("serviceWorker" in navigator) {
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
-const themeSwitch = document.getElementById("theme-switch");
-
 let theme = "dark";
 function toggleTheme() {
 	if (theme === "dark") {
@@ -44,7 +42,6 @@ themeSelector.id = "theme-sel";
 themeSelector.innerText = "";
 themeSelector.addEventListener("click", () => {
 	toggleTheme();
-	// home_screen(root);
 });
 
 header.appendChild(menu);
