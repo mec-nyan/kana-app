@@ -576,6 +576,11 @@ footer_content.innerHTML = "Made in <span class='green'>neo<b>vim</b></span> wit
 
 footer.appendChild(footer_content);
 
+// Go home.
+function goHome() {
+	home_screen(root);
+}
+
 // Let's start a new drill!
 function game_on(dev = false) {
 	console.log("game on");
@@ -583,6 +588,9 @@ function game_on(dev = false) {
 	top_container.innerHTML = "";
 	top_container.appendChild(top_info);
 	top_container.appendChild(tip);
+	menu.innerText = "";
+	menu.addEventListener("click", goHome);
+	root?.appendChild(header);
 	root.appendChild(top_container);
 	root.appendChild(kana);
 	root.appendChild(separator);
@@ -624,6 +632,7 @@ function home_screen(root) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(term);
+	menu.innerText = "󰍜";
 	root.appendChild(header);
 	root.appendChild(actions_pane);
 	root.appendChild(top_container);
