@@ -119,22 +119,24 @@ body {
 	align-items: center;
 
 	width: 100%;
-	height: 4rem;
+	padding: 0.5rem 1rem;
 
 	font-family: "Hack Nerd Font";
 
 	background: var(--mantle);
 	border-bottom: 1px solid var(--surface0);
+
+	/* border: 1px solid red; */
 }
 
 #header h3 {
 	font-size: 1rem;
 	color: var(--blue);
+	/* border: 1px solid blue; */
 }
 
 #menu,
 #theme-sel {
-	height: 100%;
 	aspect-ratio: 1/1;
 	display: flex;
 	align-items: center;
@@ -142,7 +144,7 @@ body {
 	font-size: 1.6rem;
 	color: var(--surface2);
 	cursor: pointer;
-	/* border: 1px solid red; */
+	/* border: 1px solid green; */
 }
 
 #top-container {

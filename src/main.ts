@@ -31,10 +31,8 @@ header.id = "header";
 
 const menu = document.createElement("div");
 menu.id = "menu";
-menu.innerText = "󰍜";
 
 const h3 = document.createElement("h3");
-h3.innerHTML = "Kana App!";
 
 const themeSelector = document.createElement("label");
 themeSelector.htmlFor = "theme-switch";
@@ -588,6 +586,7 @@ function game_on(dev = false) {
 	top_container.innerHTML = "";
 	top_container.appendChild(top_info);
 	top_container.appendChild(tip);
+	h3.innerText = "Let's Go!"
 	menu.innerText = "";
 	menu.addEventListener("click", goHome);
 	root?.appendChild(header);
@@ -632,7 +631,9 @@ function home_screen(root) {
 	root.innerHTML = "";
 	top_container.innerHTML = "";
 	top_container.appendChild(term);
+	h3.innerText = "Kana App!";
 	menu.innerText = "󰍜";
+	menu.removeEventListener("click", goHome);
 	root.appendChild(header);
 	root.appendChild(actions_pane);
 	root.appendChild(top_container);
