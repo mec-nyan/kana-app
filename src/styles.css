@@ -428,7 +428,7 @@ body {
 	color: var(--latte-base);
 }
 
-#theme-switch:checked~* .info{
+#theme-switch:checked~* .info {
 	color: var(--latte-subtext0);
 }
 
@@ -448,4 +448,19 @@ body {
 
 #theme-switch:checked~* #tip {
 	color: var(--latte-overlay0);
+}
+
+#dev-info {
+	position: fixed;
+	top: 3rem;
+	left: 0;
+	background-color: transparent;
+	padding: 1rem;
+	font-family: "Hack Nerd Font";
+	font-size: 0.9rem;
+	color: var(--peach);
+}
+
+#theme-switch:checked~* #dev-info {
+	color: var(--latte-peach);
 }

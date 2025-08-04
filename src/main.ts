@@ -15,6 +15,23 @@ if ("serviceWorker" in navigator) {
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
+// Shor window size in development mode.
+const devInfo = document.createElement("div");
+devInfo.id = "dev-info";
+devInfo.className = "hidden";
+
+let height = window.innerHeight;
+let width = window.innerWidth;
+
+devInfo.innerHTML = `<p>H: ${height}</br>W: ${width}</p>`;
+
+const showSize = import.meta.env.VITE_SHOW_SIZE === "true";
+
+if (showSize) {
+	devInfo.className = "visible";
+}
+
+// Handle dark/light themes.
 let theme = "dark";
 function toggleTheme() {
 	if (theme === "dark") {
@@ -638,6 +655,7 @@ function home_screen(root) {
 	root.appendChild(actions_pane);
 	root.appendChild(top_container);
 	root.appendChild(footer);
+	root.appendChild(devInfo);
 	write(term_content);
 }
 
