@@ -23,7 +23,7 @@ devInfo.className = "hidden";
 let height = window.innerHeight;
 let width = window.innerWidth;
 
-devInfo.innerHTML = `<p>H: ${height}</br>W: ${width}</p>`;
+devInfo.innerHTML = `<span>H: ${height}</br>W: ${width}</span>`;
 
 const showSize = import.meta.env.VITE_SHOW_SIZE === "true";
 

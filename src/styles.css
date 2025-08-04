@@ -452,13 +452,15 @@ body {
 
 #dev-info {
 	position: fixed;
-	top: 3rem;
-	left: 0;
+	width: 100svw;
+	height: 100svh;
 	background-color: transparent;
-	padding: 1rem;
+	padding: 4rem 0.5rem;
+	z-index: 9999;
 	font-family: "Hack Nerd Font";
 	font-size: 0.9rem;
 	color: var(--peach);
+	pointer-events: none;
 }
 
 #theme-switch:checked~* #dev-info {
