@@ -32,6 +32,16 @@ const devInfoBtn = document.createElement("div");
 devInfoBtn.id = "toggle-dev-info";
 devInfoBtn.innerText = "";
 
+function toggleDevInfo() {
+	if (devInfo.className === "hidden") {
+		devInfo.className = "";
+	} else {
+		devInfo.className = "hidden";
+	}
+}
+
+devInfoBtn.addEventListener("click", toggleDevInfo);
+
 // Handle dark/light themes.
 let theme = "dark";
 function toggleTheme() {
@@ -613,6 +623,8 @@ function game_on(dev = false) {
 	root.appendChild(separator);
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
+	root?.appendChild(devInfo);
+	root?.appendChild(devInfoBtn); // improve this.
 	make_game(dev);
 	kana_count = count_kanas(game);
 	drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
@@ -657,7 +669,7 @@ function home_screen(root) {
 	root.appendChild(top_container);
 	root.appendChild(footer);
 	root.appendChild(devInfo);
-	top_container.appendChild(devInfoBtn);
+	root?.appendChild(devInfoBtn); // improve this.
 	write(term_content);
 }
 

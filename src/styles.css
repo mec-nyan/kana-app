@@ -472,7 +472,8 @@ body {
 #toggle-dev-info {
 	position: absolute;
 	left: 0;
-	top: -4rem;
+	top: 80%;
+	background: transparent;
 	width: 4rem;
 	height: 3rem;
 	display: flex;
@@ -482,10 +483,15 @@ body {
 	font-family: "Hack Nerd Font";
 	font-size: 2rem;
 	color: var(--overlay0);
+	cursor: pointer;
 
 	/* border: 1px solid orange; */
 }
 
 #theme-switch:checked~* #toggle-dev-info {
 	color: var(--latte-overlay0);
+}
+
+.hidden {
+	display: none;
 }
