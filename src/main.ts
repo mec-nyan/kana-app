@@ -148,6 +148,7 @@ start_button.innerHTML = "Start";
 
 actions_pane.appendChild(option_buttons);
 actions_pane.appendChild(start_button);
+actions_pane.appendChild(devInfoBtn);
 start_button.addEventListener("click", () => game_on(false));
 
 
@@ -670,7 +671,6 @@ function home_screen(root) {
 	root.appendChild(top_container);
 	root.appendChild(footer);
 	root.appendChild(devInfo);
-	root?.appendChild(devInfoBtn); // improve this.
 	write(term_content);
 }
 
