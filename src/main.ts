@@ -616,6 +616,8 @@ function goHome() {
 
 // Let's start a new drill!
 function game_on(dev = false) {
+	devInfo.classList.add("in-game");
+
 	// Clear containers.
 	root.innerHTML = "";
 	top_container.innerHTML = "";
@@ -628,6 +630,7 @@ function game_on(dev = false) {
 	menu.innerText = "";
 	menu.addEventListener("click", goHome);
 
+	center_pane.appendChild(top_container);
 	center_pane.appendChild(kana);
 	center_pane.appendChild(separator);
 	center_pane.appendChild(romaji_bar);
@@ -636,7 +639,6 @@ function game_on(dev = false) {
 	root?.appendChild(devInfo);
 
 	root?.appendChild(header);
-	root.appendChild(top_container);
 	root.appendChild(center_pane);
 	root.appendChild(footer);
 
@@ -673,6 +675,8 @@ async function write(content) {
 
 // Paint the home/start screen.
 function home_screen(root: HTMLElement) {
+	devInfo.classList.remove("in-game");
+
 	root.innerHTML = "";
 	center_pane.innerHTML = "";
 	top_container.innerHTML = "";

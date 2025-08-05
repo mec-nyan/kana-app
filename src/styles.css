@@ -478,7 +478,7 @@ body {
 	width: 100svw;
 	height: 100svh;
 	background-color: transparent;
-	padding: 4rem 0.5rem;
+	padding: 5rem 0.5rem;
 	z-index: 9999;
 	font-family: "Hack Nerd Font";
 	font-size: 0.9rem;
@@ -510,9 +510,14 @@ body {
 }
 
 #theme-switch:checked~* #toggle-dev-info {
-	color: var(--latte-overlay0);
+	color: var(--latte-mauve);
+	background-color: var(--latte-surface0)
 }
 
 .hidden {
 	display: none;
+}
+
+.in-game {
+	padding-top: 12rem !important;
 }
