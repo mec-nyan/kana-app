@@ -469,6 +469,7 @@ function next_quest() {
 		round_score = 0;
 		num_hits = 0;
 		num_tries = 0;
+		percentage = 0;
 		return false;
 	}
 
