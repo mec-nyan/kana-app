@@ -154,7 +154,6 @@ start_button.innerHTML = "Start";
 
 actions_pane.appendChild(option_buttons);
 actions_pane.appendChild(start_button);
-actions_pane.appendChild(devInfoBtn);
 start_button.addEventListener("click", () => game_on(false));
 
 
@@ -617,22 +616,30 @@ function goHome() {
 
 // Let's start a new drill!
 function game_on(dev = false) {
-	console.log("game on");
+	// Clear containers.
 	root.innerHTML = "";
 	top_container.innerHTML = "";
+	center_pane.innerHTML = "";
+
 	top_container.appendChild(top_info);
 	top_container.appendChild(tip);
+
 	h3.innerText = "Let's Go!"
 	menu.innerText = "";
 	menu.addEventListener("click", goHome);
 
+	center_pane.appendChild(kana);
+	center_pane.appendChild(separator);
+	center_pane.appendChild(romaji_bar);
+	center_pane.appendChild(devInfoBtn);
+
 	root?.appendChild(devInfo);
+
 	root?.appendChild(header);
 	root.appendChild(top_container);
 	root.appendChild(center_pane);
-	root.appendChild(romaji_bar);
 	root.appendChild(footer);
-	kana?.appendChild(devInfoBtn); // improve this.
+
 	make_game(dev);
 	kana_count = count_kanas(game);
 	drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
@@ -680,7 +687,8 @@ function home_screen(root: HTMLElement) {
 
 	center_pane.appendChild(actions_pane);
 	center_pane.appendChild(top_container);
-	
+	center_pane.appendChild(devInfoBtn);
+
 	// DevInfo is an overlay.
 	root.appendChild(devInfo);
 
