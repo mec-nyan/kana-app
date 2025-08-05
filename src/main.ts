@@ -20,16 +20,17 @@ const devInfo = document.createElement("div");
 devInfo.id = "dev-info";
 devInfo.className = "hidden";
 
-let height = window.innerHeight;
-let width = window.innerWidth;
+devInfo.innerHTML = `<span>W: ${window.innerWidth}</br>H: ${window.innerHeight}</span>`;
 
-devInfo.innerHTML = `<span>H: ${height}</br>W: ${width}</span>`;
-
-const showSize = import.meta.env.VITE_SHOW_SIZE === "true";
-
-if (showSize) {
-	devInfo.className = "visible";
+function updateDevInfo() {
+	devInfo.innerHTML = `<span>W: ${window.innerWidth}</br>H: ${window.innerHeight}</span>`;
 }
+
+window.addEventListener("resize", updateDevInfo);
+
+const devInfoBtn = document.createElement("div");
+devInfoBtn.id = "toggle-dev-info";
+devInfoBtn.innerText = "";
 
 // Handle dark/light themes.
 let theme = "dark";
@@ -656,6 +657,7 @@ function home_screen(root) {
 	root.appendChild(top_container);
 	root.appendChild(footer);
 	root.appendChild(devInfo);
+	top_container.appendChild(devInfoBtn);
 	write(term_content);
 }
 
