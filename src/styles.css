@@ -503,8 +503,11 @@ body {
 	background: rgba(0, 0, 0, 0.3);
 	font-family: "Hack Nerd Font";
 	font-size: 1.5rem;
-	color: var(--mauve);
 	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	touch-action: manipulation;
 
 	/* border: 1px solid var(--mauve); */
 }
@@ -520,4 +523,44 @@ body {
 
 .in-game {
 	padding-top: 12rem !important;
+}
+
+.cherry {
+	color: var(--red) !important;
+}
+
+.peach {
+	color: var(--yellow) !important;
+}
+
+.apple {
+	color: var(--green) !important;
+}
+
+.orange {
+	color: var(--peach) !important;
+}
+
+.watermelon {
+	color: var(--red) !important;
+}
+
+#theme-switch:checked~* .cherry {
+	color: var(--latte-red) !important;
+}
+
+#theme-switch:checked~* .peach {
+	color: var(--latte-yellow) !important;
+}
+
+#theme-switch:checked~* .apple {
+	color: var(--latte-green) !important;
+}
+
+#theme-switch:checked~* .orange {
+	color: var(--latte-peach) !important;
+}
+
+#theme-switch:checked~* .watermelon {
+	color: var(--latte-red) !important;
 }

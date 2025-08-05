@@ -36,14 +36,39 @@ window.addEventListener("resize", updateDevInfo);
 
 const devInfoBtn = document.createElement("div");
 devInfoBtn.id = "toggle-dev-info";
-devInfoBtn.innerText = "";
 
+// To toggle the develop info, the user must tap the icon five times.
+const infoFruits = [
+	{ fruit: "", class: "cherry" },
+	{ fruit: "", class: "peach" },
+	{ fruit: "", class: "apple" },
+	{ fruit: "", class: "orange" },
+	{ fruit: "󱁇", class: "watermelon" },
+];
+
+devInfoBtn.innerText = infoFruits[0].fruit;
+devInfoBtn.className = infoFruits[0].class;
+
+let count = 0;
 function toggleDevInfo() {
-	if (devInfo.className === "hidden") {
-		devInfo.className = "";
-	} else {
+	if (devInfo.className === "") {
 		devInfo.className = "hidden";
+		count = 0;
+		devInfoBtn.innerText = infoFruits[0].fruit;
+		devInfoBtn.className = infoFruits[0].class;
+		return;
 	}
+
+	count++;
+	if (count === infoFruits.length) {
+		count = 0;
+		devInfoBtn.innerText = infoFruits[0].fruit;
+		devInfoBtn.className = infoFruits[0].class;
+		devInfo.className = "";
+		return;
+	}
+	devInfoBtn.innerText = infoFruits[count].fruit;
+	devInfoBtn.className = infoFruits[count].class;
 }
 
 devInfoBtn.addEventListener("click", toggleDevInfo);
