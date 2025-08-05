@@ -15,7 +15,13 @@ if ("serviceWorker" in navigator) {
 // We'll be manipulating this div.
 const root = document.getElementById("root");
 
-// Shor window size in development mode.
+// We'll have a header, a content-div and a footer.
+// The center pane will contain actions (home) and kana/buttons (game).
+const center_pane = document.createElement("div");
+center_pane.id = "center-pane";
+
+
+// Show window size in development mode.
 const devInfo = document.createElement("div");
 devInfo.id = "dev-info";
 devInfo.className = "hidden";
@@ -619,14 +625,14 @@ function game_on(dev = false) {
 	h3.innerText = "Let's Go!"
 	menu.innerText = "";
 	menu.addEventListener("click", goHome);
+
+	root?.appendChild(devInfo);
 	root?.appendChild(header);
 	root.appendChild(top_container);
-	root.appendChild(kana);
-	root.appendChild(separator);
+	root.appendChild(center_pane);
 	root.appendChild(romaji_bar);
 	root.appendChild(footer);
-	root?.appendChild(devInfo);
-	root?.appendChild(devInfoBtn); // improve this.
+	kana?.appendChild(devInfoBtn); // improve this.
 	make_game(dev);
 	kana_count = count_kanas(game);
 	drill_info.innerHTML = `<span>Kanas on this drill: <span class="info-highlighted">${kana_count}</span> - \(${kana_count} lerf\)</span>`;
@@ -659,18 +665,29 @@ async function write(content) {
 }
 
 // Paint the home/start screen.
-function home_screen(root) {
+function home_screen(root: HTMLElement) {
 	root.innerHTML = "";
+	center_pane.innerHTML = "";
 	top_container.innerHTML = "";
-	top_container.appendChild(term);
+
 	h3.innerText = "Kana App!";
 	menu.innerText = "󰍜";
 	menu.removeEventListener("click", goHome);
-	root.appendChild(header);
-	root.appendChild(actions_pane);
-	root.appendChild(top_container);
-	root.appendChild(footer);
+
+	// At the home screen, this container is at the bottom.
+	// TODO: rename it.
+	top_container.appendChild(term);
+
+	center_pane.appendChild(actions_pane);
+	center_pane.appendChild(top_container);
+	
+	// DevInfo is an overlay.
 	root.appendChild(devInfo);
+
+	root.appendChild(header);
+	root.appendChild(center_pane);
+	root.appendChild(footer);
+
 	write(term_content);
 }
 
