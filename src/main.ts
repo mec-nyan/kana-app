@@ -1,8 +1,13 @@
 import { registerServiceWorker } from "./service-worker";
+import { DevInfoOverlay } from "./developer-info";
+
 registerServiceWorker();
 
 // We'll be manipulating this div.
 const root = document.getElementById("root");
+
+// Show window size in development mode.
+const info = new DevInfoOverlay();
 
 // We'll have a header, a content-div and a footer.
 // The center pane will contain actions (home) and kana/buttons (game).
@@ -10,57 +15,6 @@ const center_pane = document.createElement("div");
 center_pane.id = "center-pane";
 
 
-// Show window size in development mode.
-const devInfo = document.createElement("div");
-devInfo.id = "dev-info";
-devInfo.className = "hidden";
-
-devInfo.innerHTML = `<span>W: ${window.innerWidth}</br>H: ${window.innerHeight}</span>`;
-
-function updateDevInfo() {
-	devInfo.innerHTML = `<span>W: ${window.innerWidth}</br>H: ${window.innerHeight}</span>`;
-}
-
-window.addEventListener("resize", updateDevInfo);
-
-const devInfoBtn = document.createElement("div");
-devInfoBtn.id = "toggle-dev-info";
-
-// To toggle the develop info, the user must tap the icon five times.
-const infoFruits = [
-	{ fruit: "", class: "cherry" },
-	{ fruit: "", class: "peach" },
-	{ fruit: "", class: "apple" },
-	{ fruit: "", class: "orange" },
-	{ fruit: "󱁇", class: "watermelon" },
-];
-
-devInfoBtn.innerText = infoFruits[0].fruit;
-devInfoBtn.className = infoFruits[0].class;
-
-let count = 0;
-function toggleDevInfo() {
-	if (devInfo.className === "") {
-		devInfo.className = "hidden";
-		count = 0;
-		devInfoBtn.innerText = infoFruits[0].fruit;
-		devInfoBtn.className = infoFruits[0].class;
-		return;
-	}
-
-	count++;
-	if (count === infoFruits.length) {
-		count = 0;
-		devInfoBtn.innerText = infoFruits[0].fruit;
-		devInfoBtn.className = infoFruits[0].class;
-		devInfo.className = "";
-		return;
-	}
-	devInfoBtn.innerText = infoFruits[count].fruit;
-	devInfoBtn.className = infoFruits[count].class;
-}
-
-devInfoBtn.addEventListener("click", toggleDevInfo);
 
 // Handle dark/light themes.
 let theme = "dark";
@@ -630,7 +584,7 @@ function goHome() {
 
 // Let's start a new drill!
 function game_on(dev = false) {
-	devInfo.classList.add("in-game");
+	info.devInfo.classList.add("in-game");
 
 	// Clear containers.
 	root.innerHTML = "";
@@ -648,9 +602,9 @@ function game_on(dev = false) {
 	center_pane.appendChild(kana);
 	center_pane.appendChild(separator);
 	center_pane.appendChild(romaji_bar);
-	center_pane.appendChild(devInfoBtn);
+	center_pane.appendChild(info.devInfoBtn);
 
-	root?.appendChild(devInfo);
+	root?.appendChild(info.devInfo);
 
 	root?.appendChild(header);
 	root.appendChild(center_pane);
@@ -689,7 +643,7 @@ async function write(content) {
 
 // Paint the home/start screen.
 function home_screen(root: HTMLElement) {
-	devInfo.classList.remove("in-game");
+	info.devInfo.classList.remove("in-game");
 
 	root.innerHTML = "";
 	center_pane.innerHTML = "";
@@ -705,10 +659,10 @@ function home_screen(root: HTMLElement) {
 
 	center_pane.appendChild(actions_pane);
 	center_pane.appendChild(top_container);
-	center_pane.appendChild(devInfoBtn);
+	center_pane.appendChild(info.devInfoBtn);
 
 	// DevInfo is an overlay.
-	root.appendChild(devInfo);
+	root.appendChild(info.devInfo);
 
 	root.appendChild(header);
 	root.appendChild(center_pane);
