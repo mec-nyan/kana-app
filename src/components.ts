@@ -4,6 +4,7 @@ import { DevInfoOverlay } from "./components/devinfo/developer-info";
 import { footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 import { Actions } from "./components/actions/actions";
+import { write } from "./utils/typewriter";
 
 const header = new Header();
 
@@ -38,6 +39,7 @@ let term_content = [
 
 const actions = new Actions(game_on);
 const actionsPane = actions.getElement();
+
 // Game screen.
 //
 // At the top, we'll place a div with general info.
@@ -317,7 +319,7 @@ function next_quest() {
 }
 
 // Print a hint (we'll replace this with audio).
-function hint_me(rmj) {
+function hint_me(rmj: string) {
 	// No points if you asked for a hint haha.
 	if (rmj !== "") {
 		hinted = true;
@@ -325,8 +327,7 @@ function hint_me(rmj) {
 }
 
 //
-function handleClick(rmj, current) {
-	// console.log(`handleClick: ${rmj}`);
+function handleClick(rmj: string, current) {
 	// This to know your accuracy.
 	num_tries++;
 
@@ -334,14 +335,11 @@ function handleClick(rmj, current) {
 	const right = rmj === current.romaji;
 
 	if (right) {
-		// console.log(`... right: ${current.hiragana}`);
 		// We're moving to the next kana, so...
 		if (!hinted) {
 			round_score++;
-			// console.log(`... not hinted! (score: ${round_score})`);
 		} else {
 			hinted = false;
-			// console.log(`... hinted! (score: ${round_score}`);
 		}
 
 		num_hits++;
@@ -412,29 +410,6 @@ function game_on(dev = false) {
 	return;
 }
 
-
-// Animated typing effect.
-async function write(content) {
-	function sleep(ms) {
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
-	let output = "";
-	for (const line of content) {
-		for (let i = 0; i < line.length; ++i) {
-			output += line[i];
-			if (i + 1 < line.length) {
-				term.innerHTML = `<p>${output}_</p>`
-			} else {
-				term.innerHTML = `<p>${output}<span class="blink">_<span></p>`
-			}
-			await sleep(50);
-		}
-		if (line !== "") {
-			await sleep(600);
-		}
-		output += "</br>";
-	}
-}
 
 // Paint the home/start screen.
 export function homeScreen(root: HTMLElement) {
