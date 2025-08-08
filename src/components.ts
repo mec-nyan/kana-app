@@ -1,7 +1,7 @@
 import { kanaMap } from "./kana/kanas";
-import { DevInfoOverlay } from "./components/developer-info";
 import { playKana } from "./utils/sound";
-import { footer } from "./components/footer";
+import { DevInfoOverlay } from "./components/devinfo/developer-info";
+import { footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 
 const header = new Header();
