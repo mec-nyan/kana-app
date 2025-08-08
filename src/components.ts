@@ -1,9 +1,8 @@
-import { kanaMap } from "./kanas";
-import { DevInfoOverlay } from "./developer-info";
-import { playKana } from "./sound";
-import { Footer } from "./footer";
+import { kanaMap } from "./kana/kanas";
+import { DevInfoOverlay } from "./components/developer-info";
+import { playKana } from "./utils/sound";
+import { footer } from "./components/footer";
 
-const footer = new Footer().footer;
 
 // Show window size in development mode.
 const info = new DevInfoOverlay();
