@@ -2,6 +2,9 @@ import { kanaMap } from "./kana/kanas";
 import { DevInfoOverlay } from "./components/developer-info";
 import { playKana } from "./utils/sound";
 import { footer } from "./components/footer";
+import { Header } from "./components/header/header";
+
+const header = new Header();
 
 
 // Show window size in development mode.
@@ -15,37 +18,6 @@ const info = new DevInfoOverlay();
 const center_pane = document.createElement("div");
 center_pane.id = "center-pane";
 
-// Handle dark/light themes.
-let theme = "dark";
-function toggleTheme() {
-	if (theme === "dark") {
-		theme = "light";
-		themeSelector.innerText = "";
-	} else {
-		theme = "dark";
-		themeSelector.innerText = "";
-	}
-}
-
-const header = document.createElement("div");
-header.id = "header";
-
-const menu = document.createElement("div");
-menu.id = "menu";
-
-const h3 = document.createElement("h3");
-
-const themeSelector = document.createElement("label");
-themeSelector.htmlFor = "theme-switch";
-themeSelector.id = "theme-sel";
-themeSelector.innerText = "";
-themeSelector.addEventListener("click", () => {
-	toggleTheme();
-});
-
-header.appendChild(menu);
-header.appendChild(h3);
-header.appendChild(themeSelector);
 
 // Container for term-ish info pane.
 const top_container = document.createElement("div");
@@ -447,9 +419,9 @@ function game_on(dev = false) {
 	top_container.appendChild(top_info);
 	top_container.appendChild(tip);
 
-	h3.innerText = "Let's Go!"
-	menu.innerText = "";
-	menu.addEventListener("click", goHome);
+	header.setTitle( "Let's Go!");
+	header.setMenuIcon("");
+	header.setMenuAction(goHome);
 
 	center_pane.appendChild(top_container);
 	center_pane.appendChild(kana);
@@ -459,7 +431,7 @@ function game_on(dev = false) {
 
 	root?.appendChild(info.devInfo);
 
-	root?.appendChild(header);
+	root?.appendChild(header.getElement());
 	root.appendChild(center_pane);
 	root.appendChild(footer);
 
@@ -502,9 +474,9 @@ export function homeScreen(root: HTMLElement) {
 	center_pane.innerHTML = "";
 	top_container.innerHTML = "";
 
-	h3.innerText = "Kana App!";
-	menu.innerText = "󰍜";
-	menu.removeEventListener("click", goHome);
+	header.setTitle("Kana App!");
+	header.setMenuIcon("󰍜");
+	header.clearMenuAction();
 
 	// At the home screen, this container is at the bottom.
 	// TODO: rename it.
@@ -517,7 +489,7 @@ export function homeScreen(root: HTMLElement) {
 	// DevInfo is an overlay.
 	root.appendChild(info.devInfo);
 
-	root.appendChild(header);
+	root.appendChild(header.getElement());
 	root.appendChild(center_pane);
 	root.appendChild(footer);
 
