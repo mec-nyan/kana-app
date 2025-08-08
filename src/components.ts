@@ -3,6 +3,7 @@ import { playKana } from "./utils/sound";
 import { DevInfoOverlay } from "./components/devinfo/developer-info";
 import { footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
+import { Actions } from "./components/actions/actions";
 
 const header = new Header();
 
@@ -35,39 +36,8 @@ let term_content = [
 	"Are you ready?",
 ];
 
-
-// Option buttons (duh!).
-const option_buttons = document.createElement("div");
-option_buttons.id = "option-buttons";
-
-const options = [
-	{ icon: " ", name: "config" },
-	{ icon: "󰋖 ", name: "..." },
-	{ icon: " ", name: "..." },
-	{ icon: " ", name: "dev" },
-];
-
-options.forEach(opt => {
-	const btn = document.createElement("div");
-	btn.classList.add("opt");
-	btn.addEventListener("click", () => game_on(true));
-	btn.innerHTML = `<span class="nerd-icon">${opt.icon}</span>`;
-	option_buttons.appendChild(btn);
-})
-
-
-const actions_pane = document.createElement("div");
-actions_pane.id = "actions"
-
-const start_button = document.createElement("div");
-start_button.id = "start-button";
-start_button.innerHTML = "Start";
-
-actions_pane.appendChild(option_buttons);
-actions_pane.appendChild(start_button);
-start_button.addEventListener("click", () => game_on(false));
-
-
+const actions = new Actions(game_on);
+const actionsPane = actions.getElement();
 // Game screen.
 //
 // At the top, we'll place a div with general info.
@@ -419,7 +389,7 @@ function game_on(dev = false) {
 	top_container.appendChild(top_info);
 	top_container.appendChild(tip);
 
-	header.setTitle( "Let's Go!");
+	header.setTitle("Let's Go!");
 	header.setMenuIcon("");
 	header.setMenuAction(goHome);
 
@@ -482,7 +452,7 @@ export function homeScreen(root: HTMLElement) {
 	// TODO: rename it.
 	top_container.appendChild(term);
 
-	center_pane.appendChild(actions_pane);
+	center_pane.appendChild(actionsPane);
 	center_pane.appendChild(top_container);
 	center_pane.appendChild(info.devInfoBtn);
 
