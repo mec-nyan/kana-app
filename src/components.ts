@@ -438,5 +438,5 @@ export function homeScreen(root: HTMLElement) {
 	root.appendChild(center_pane);
 	root.appendChild(footer);
 
-	write(term_content, term);
+	write(term_content, term, root);
 }
