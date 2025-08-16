@@ -7,8 +7,8 @@ const GPATH = "/kana-app";
 const APP_STATIC_RESOURCES = [
 	`${GPATH}/`,
 	`${GPATH}/index.html`,
-	`${GPATH}/styles.css`,
-	`${GPATH}/main.js`,
+	`${GPATH}/assets/index.css`,
+	`${GPATH}/assets/index.js`,
 	`${GPATH}/kanaapp.json`,
 	`${GPATH}/fonts/HackNerdFont-Regular.ttf`,
 	`${GPATH}/fonts/HackNerdFontPropo-Regular.ttf`,

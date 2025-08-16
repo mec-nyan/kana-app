@@ -1,23 +1,21 @@
-const VERSION = "v0.1.0-16bis";
+const VERSION = "v0.1.0-17";
 
 const CACHE_NAME = `kana-app-${VERSION}`;
 
 const GPATH = "/kana-app";
-const ASSETS = `${GPATH}/assets`;
 
 const APP_STATIC_RESOURCES = [
 	`${GPATH}/`,
 	`${GPATH}/index.html`,
+	`${GPATH}/assets/index.css`,
+	`${GPATH}/assets/index.js`,
 	`${GPATH}/kanaapp.json`,
-	`${GPATH}/sw.js`,
+	`${GPATH}/fonts/HackNerdFont-Regular.ttf`,
+	`${GPATH}/fonts/HackNerdFontPropo-Regular.ttf`,
 	`${GPATH}/icons/kapp.png`,
 	`${GPATH}/icons/kapp.svg`,
 	`${GPATH}/screenshots/home.png`,
-	`${GPATH}/screenshots/home-wide.png`,
-	`${GPATH}/sounds/jp_sounds.mp3`,
-	`${ASSETS}/HackNerdFontPropo-Regular.ttf`,
-	`${ASSETS}/index.css`,
-	`${ASSETS}/index.js`,
+	`${GPATH}/screenshots/home-wide.png`
 ]
 
 self.addEventListener("install", (e) => {

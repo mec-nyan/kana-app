@@ -1,5 +1,6 @@
 import { registerServiceWorker } from "./service-worker";
 import { homeScreen } from "./components";
+import './styles.scss';
 
 registerServiceWorker();
 
