@@ -60,9 +60,14 @@
   --latte-crust: #dce0e8;
 }
 
-@mixin themeDark($theme: var(--text)) {
+@mixin themeDark() {
   background: var(--base);
-  color: $theme;
+  color: var(--text);
+}
+
+@mixin themeLight() {
+  background: var(--late-base);
+  color: var(--late-text);
 }
 
 * {
@@ -74,6 +79,7 @@
 
 html,
 body {
+  @include themeDark;
   font-family: sans-serif;
 }
 
