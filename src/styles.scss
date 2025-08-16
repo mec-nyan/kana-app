@@ -1,483 +1,482 @@
-@use 'base';
+@use 'base' as *;
 
 .nerd-icon {
-	font-family: "Hack Nerd Font";
+  font-family: "Hack Nerd Font";
 }
 
 #root {
-	background: var(--base);
-	color: var(--text);
+  @include themeDark;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-	height: 100svh;
+  height: 100svh;
 
-	/* border: 4px solid lightblue; */
-}
-
-/* Just a placeholder for making a responsive desing later. */
-@media (orientation: portrait) {
-	#root {
-		width: 100svw;
-	}
-}
-
-@media (orientation: landscape) {
-	#root {
-		width: 50svh;
-		margin: 0 auto;
-	}
+  /* border: 4px solid lightblue; */
 }
 
 #header {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-	width: 100%;
-	height: 4rem;
-	padding: 0 1rem;
+  width: 100%;
+  height: 4rem;
+  padding: 0 1rem;
 
-	font-family: "Hack Nerd Font";
+  font-family: "Hack Nerd Font";
 
-	background: var(--mantle);
-	border-bottom: 1px solid var(--surface0);
+  background: var(--mantle);
+  border-bottom: 1px solid var(--surface0);
 
-	/* border: 1px solid red; */
+  /* border: 1px solid red; */
 }
 
 #header h3 {
-	font-size: 1rem;
-	color: var(--blue);
+  font-size: 1rem;
+  color: var(--blue);
 
-	/* border: 1px solid blue; */
+  /* border: 1px solid blue; */
 }
 
 #menu,
 #theme-sel {
-	aspect-ratio: 1/1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.6rem;
-	color: var(--surface2);
-	cursor: pointer;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--surface2);
+  cursor: pointer;
 
-	/* border: 1px solid green; */
+  /* border: 1px solid green; */
 }
 
 #top-container {
-	position: relative;
-	padding: 0.5rem;
-	width: 100%;
+  position: relative;
+  padding: 0.5rem;
+  width: 100%;
 
-	/* border: 1px solid green; */
+  /* border: 1px solid green; */
 }
 
 #term {
-	background: var(--crust);
-	color: var(--overlay1);
-	border: 1px solid var(--surface0);
-	width: 100%;
-	min-height: calc(1rem + 5lh);
-	padding: 0.5rem;
-	font-family: "Hack", monospace;
-	font-size: 0.7rem;
+  background: var(--crust);
+  color: var(--overlay1);
+  border: 1px solid var(--surface0);
+  width: 100%;
+  min-height: calc(1rem + 5lh);
+  padding: 0.5rem;
+  font-family: "Hack", monospace;
+  font-size: 0.7rem;
 }
 
 #option-buttons {
-	/* border: 1px solid lightblue; */
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, auto);
-	gap: 1rem;
-	width: 60%;
-	margin-bottom: 1rem;
+  /* border: 1px solid lightblue; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 1rem;
+  width: 60%;
+  margin-bottom: 1rem;
 }
 
 .opt {
-	background: var(--mantle);
-	color: var(--blue);
-	width: 100%;
-	aspect-ratio: 1/1;
-	font-size: 3rem;
-	border-radius: 6px;
-	border: 1px solid var(--surface0);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
+  background: var(--mantle);
+  color: var(--blue);
+  width: 100%;
+  aspect-ratio: 1/1;
+  font-size: 3rem;
+  border-radius: 6px;
+  border: 1px solid var(--surface0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .blink {
-	animation: blink-animation 1s steps(1, start) infinite;
+  animation: blink-animation 1s steps(1, start) infinite;
 }
 
 @keyframes blink-animation {
-	0% {
-		visibility: visible;
-	}
+  0% {
+    visibility: visible;
+  }
 
-	50% {
-		visibility: hidden;
-	}
+  50% {
+    visibility: hidden;
+  }
 
-	100% {
-		visibility: visible;
-	}
+  100% {
+    visibility: visible;
+  }
 }
 
 #actions {
-	width: 100%;
-	height: 90%;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  height: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-	/* border: 1px solid orange; */
+  /* border: 1px solid orange; */
 }
 
 #start-button {
-	background: var(--mantle);
-	border: 1px solid var(--surface1);
-	color: var(--yellow);
-	font-family: "Hack", monospace;
-	font-size: 1.5rem;
-	width: 60%;
-	text-align: center;
-	padding: 0.75rem;
-	border-radius: 8px;
-	cursor: pointer;
+  background: var(--mantle);
+  border: 1px solid var(--surface1);
+  color: var(--yellow);
+  font-family: "Hack", monospace;
+  font-size: 1.5rem;
+  width: 60%;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 #top-info {
-	/* border: 1px solid orange; */
+  /* border: 1px solid orange; */
 
-	background: var(--crust);
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding: 0.25rem;
+  background: var(--crust);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.25rem;
 }
 
 #tip {
-	padding: 0.5rem;
-	font-size: 0.8rem;
-	text-align: center;
-	color: var(--overlay1);
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--overlay1);
 }
 
 #progress {
-	/* border: 2px solid orange; */
-	display: flex;
-	flex-direction: row;
-	align-items: baseline;
+  /* border: 2px solid orange; */
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
 
 .info-highlighted {
-	color: var(--blue);
+  color: var(--blue);
 }
 
 #bar-container {
-	width: 100%;
-	/* border: 1px solid red; */
-	padding: 0px 0.5rem;
+  width: 100%;
+  /* border: 1px solid red; */
+  padding: 0px 0.5rem;
 }
 
 #bar {
-	background: linear-gradient(to right,
-			var(--maroon),
-			var(--yellow),
-			var(--green),
-			var(--blue));
-	width: 100%;
-	height: 0.4rem;
-	border-radius: 0.2rem;
-	/* margin-left: 0.5rem; */
-	/* position: relative; */
-	/* bottom: 0.15rem; */
-	overflow: hidden;
-	display: flex;
-	justify-content: right;
+  background: linear-gradient(to right,
+      var(--maroon),
+      var(--yellow),
+      var(--green),
+      var(--blue));
+  width: 100%;
+  height: 0.4rem;
+  border-radius: 0.2rem;
+  /* margin-left: 0.5rem; */
+  /* position: relative; */
+  /* bottom: 0.15rem; */
+  overflow: hidden;
+  display: flex;
+  justify-content: right;
 }
 
 #inner {
-	height: 100%;
-	background: var(--surface1);
+  height: 100%;
+  background: var(--surface1);
 }
 
 .info {
-	font-size: 0.7rem;
-	margin-bottom: 0.2rem;
-	color: var(--overlay1);
+  font-size: 0.7rem;
+  margin-bottom: 0.2rem;
+  color: var(--overlay1);
 }
 
 #center-pane {
-	position: relative;
-	width: 100%;
-	height: calc(100svh - 6rem);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-	/* border: 1px solid var(--peach); */
+  /* border: 1px solid var(--peach); */
 }
 
 #kana {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 16rem;
-	/* TODO: serif fonts look great in japanese!
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16rem;
+  /* TODO: serif fonts look great in japanese!
 	* Add an option for the user to select the font.
 	* Also, load fonts that support that (just in case).
 	* BTW, in japanese we describe the fonts as "gothic" or "mincho".*/
-	/* font-family: serif; */
-	font-family: sans-serif;
-	color: var(--blue);
-	cursor: pointer;
+  /* font-family: serif; */
+  font-family: sans-serif;
+  color: var(--blue);
+  cursor: pointer;
 
-	/* border: 2px solid blue; */
+  /* border: 2px solid blue; */
 }
 
 #separator {
-	width: 30%;
-	height: 0.2rem;
-	background: var(--lavender);
-	opacity: 0.7;
-	border-radius: 0.1rem;
+  width: 30%;
+  height: 0.2rem;
+  background: var(--lavender);
+  opacity: 0.7;
+  border-radius: 0.1rem;
 }
 
 #romaji-bar {
-	/* border: 2px solid yellow; */
+  /* border: 2px solid yellow; */
 
-	width: 90%;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 1rem;
-	padding: 2rem 1rem;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  padding: 2rem 1rem;
 }
 
 .romaji-button {
-	/* border: 1px solid green; */
+  /* border: 1px solid green; */
 
-	background: var(--sapphire);
-	color: var(--base);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.25rem;
-	border-radius: 50%;
-	aspect-ratio: 1 / 1;
-	width: 100%;
-	cursor: pointer;
-	transition: all 0.15s ease-in;
+  background: var(--sapphire);
+  color: var(--base);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.15s ease-in;
 }
 
 .romaji-button.touched {
-	background: var(--teal);
-	transform: scale(1.25);
+  background: var(--teal);
+  transform: scale(1.25);
 }
 
 .romaji-button.ignored {
-	opacity: 0.2;
+  opacity: 0.2;
 }
 
 #footer {
-	width: 100%;
-	height: 2rem;
-	display: flex;
-	justify-content: center;
-	padding: 0.5rem;
-	color: var(--overlay1);
-	font-size: 0.7rem;
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  color: var(--overlay1);
+  font-size: 0.7rem;
 
-	/* border: 1px solid yellow; */
+  /* border: 1px solid yellow; */
 }
 
 .green {
-	color: var(--teal);
+  color: var(--teal);
 }
 
 #theme-switch:checked~#root {
-	background: var(--latte-base);
-	color: var(--latte-text);
-	border: none;
+  background: var(--latte-base);
+  color: var(--latte-text);
+  border: none;
 }
 
 #theme-switch:checked~* #header {
-	background: var(--latte-sapphire);
-	border-bottom: 1px solid var(--latte-text);
+  background: var(--latte-sapphire);
+  border-bottom: 1px solid var(--latte-text);
 }
 
 #theme-switch:checked~* h3 {
-	background: inherit !important;
-	color: var(--latte-base) !important;
+  background: inherit !important;
+  color: var(--latte-base) !important;
 }
 
 #theme-switch:checked~* #menu,
 #theme-switch:checked~* #theme-sel {
-	background: inherit !important;
-	color: var(--latte-base) !important;
+  background: inherit !important;
+  color: var(--latte-base) !important;
 }
 
 #theme-switch:checked~* #term {
-	background: var(--latte-text) !important;
-	/* border: 1px solid var(--latte-surface0); */
-	color: var(--latte-base);
+  background: var(--latte-text) !important;
+  /* border: 1px solid var(--latte-surface0); */
+  color: var(--latte-base);
 }
 
 #theme-switch:checked~* #top-info {
-	background: var(--latte-crust) !important;
+  background: var(--latte-crust) !important;
 }
 
 #theme-switch:checked~* .opt,
 #theme-switch:checked~* #start-button {
-	background: var(--latte-crust) !important;
-	border-color: var(--latte-surface0);
-	color: var(--latte-pink);
+  background: var(--latte-crust) !important;
+  border-color: var(--latte-surface0);
+  color: var(--latte-pink);
 }
 
 #theme-switch:checked~* #start-button {
-	color: var(--latte-sapphire);
-	box-shadow: 0px 8px 8px var(--latte-surface2);
+  color: var(--latte-sapphire);
+  box-shadow: 0px 8px 8px var(--latte-surface2);
 }
 
 #theme-switch:checked~* #kana {
-	color: var(--latte-pink);
+  color: var(--latte-pink);
 }
 
 #theme-switch:checked~* .green {
-	color: var(--latte-sapphire);
+  color: var(--latte-sapphire);
 }
 
 #theme-switch:checked~* #separator {
-	background: var(--latte-blue);
+  background: var(--latte-blue);
 }
 
 #theme-switch:checked~* .romaji-button {
-	background: var(--latte-sapphire);
-	color: var(--latte-base);
+  background: var(--latte-sapphire);
+  color: var(--latte-base);
 }
 
 #theme-switch:checked~* .info {
-	color: var(--latte-subtext0);
+  color: var(--latte-subtext0);
 }
 
 #theme-switch:checked~* .info-highlighted {
-	color: var(--latte-sapphire);
+  color: var(--latte-sapphire);
 }
 
 #theme-switch:checked~* #inner {
-	background: var(--latte-surface1);
+  background: var(--latte-surface1);
 }
 
 #theme-switch:checked~* #bar {
-	background: linear-gradient(to right,
-			var(--latte-sapphire),
-			var(--latte-pink));
+  background: linear-gradient(to right,
+      var(--latte-sapphire),
+      var(--latte-pink));
 }
 
 #theme-switch:checked~* #tip {
-	color: var(--latte-overlay0);
+  color: var(--latte-overlay0);
 }
 
 #dev-info {
-	position: fixed;
-	width: 100svw;
-	height: 100svh;
-	background-color: transparent;
-	padding: 5rem 0.5rem;
-	z-index: 9999;
-	font-family: "Hack Nerd Font";
-	font-size: 0.9rem;
-	color: var(--peach);
-	pointer-events: none;
+  position: fixed;
+  width: 100svw;
+  height: 100svh;
+  background-color: transparent;
+  padding: 5rem 0.5rem;
+  z-index: 9999;
+  font-family: "Hack Nerd Font";
+  font-size: 0.9rem;
+  color: var(--peach);
+  pointer-events: none;
 }
 
 #theme-switch:checked~* #dev-info {
-	color: var(--latte-peach);
+  color: var(--latte-peach);
 }
 
 #toggle-dev-info {
-	position: absolute;
-	left: 0rem;
-	bottom: 8rem;
-	width: 4rem;
-	height: 3rem;
-	display: flex;
-	justify-content: right;
-	align-items: center;
-	padding: 0 1rem;
-	background: rgba(0, 0, 0, 0.3);
-	font-family: "Hack Nerd Font";
-	font-size: 1.5rem;
-	cursor: pointer;
-	user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	touch-action: manipulation;
+  position: absolute;
+  left: 0rem;
+  bottom: 8rem;
+  width: 4rem;
+  height: 3rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  font-family: "Hack Nerd Font";
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation;
 
-	/* border: 1px solid var(--mauve); */
+  /* border: 1px solid var(--mauve); */
 }
 
 #theme-switch:checked~* #toggle-dev-info {
-	color: var(--latte-mauve);
-	background-color: var(--latte-surface0)
+  color: var(--latte-mauve);
+  background-color: var(--latte-surface0)
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .in-game {
-	padding-top: 12rem !important;
+  padding-top: 12rem !important;
 }
 
 .cherry {
-	color: var(--red) !important;
+  color: var(--red) !important;
 }
 
 .peach {
-	color: var(--yellow) !important;
+  color: var(--yellow) !important;
 }
 
 .apple {
-	color: var(--green) !important;
+  color: var(--green) !important;
 }
 
 .orange {
-	color: var(--peach) !important;
+  color: var(--peach) !important;
 }
 
 .watermelon {
-	color: var(--red) !important;
+  color: var(--red) !important;
 }
 
 #theme-switch:checked~* .cherry {
-	color: var(--latte-red) !important;
+  color: var(--latte-red) !important;
 }
 
 #theme-switch:checked~* .peach {
-	color: var(--latte-yellow) !important;
+  color: var(--latte-yellow) !important;
 }
 
 #theme-switch:checked~* .apple {
-	color: var(--latte-green) !important;
+  color: var(--latte-green) !important;
 }
 
 #theme-switch:checked~* .orange {
-	color: var(--latte-peach) !important;
+  color: var(--latte-peach) !important;
 }
 
 #theme-switch:checked~* .watermelon {
-	color: var(--latte-red) !important;
+  color: var(--latte-red) !important;
+}
+
+/* Just a placeholder for making a responsive desing later. */
+@media (orientation: portrait) {
+  #root {
+    width: 100svw;
+  }
+}
+
+@media (orientation: landscape) {
+  #root {
+    width: 50svh;
+    margin: 0 auto;
+  }
 }

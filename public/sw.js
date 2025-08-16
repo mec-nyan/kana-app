@@ -1,4 +1,4 @@
-const VERSION = "v0.1.0-17";
+const VERSION = "v0.1.0-18";
 
 const CACHE_NAME = `kana-app-${VERSION}`;
 
