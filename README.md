@@ -62,3 +62,25 @@ For now the only targeted devices are smartphones, so it looks awful anywhere el
 
 Making the app responsive is last on the list, but at least I'll provide a usable version for desktop
 computers and tablets (someday).
+
+> [!IMPORTANt]
+> **WIP**: This app _including this README_ is a work in progress!
+> Expect a lot of breaking changes (and a lot of changes in general).
+> I'll try to keep a stable version deployed on Github pages.
+> See the list of versions and releases for more info.
+
+# Contributing
+
+WIP
+
+# Technologies
+
+WIP
+
+# Installing
+
+WIP
+
+# License
+
+**GPL-3.0** This app is free and open source software.
