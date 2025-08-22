@@ -8,7 +8,7 @@ export default defineConfig({
 				entryFileNames: `assets/index.js`,
 				chunkFileNames: `assets/[name].js`,
 				assetFileNames: (info) => {
-					if (info.name === "styles.css") {
+					if (info.names.includes("styles.css")) {
 						return "index.css";
 					}
 					return 'assets/[name][extname]';
