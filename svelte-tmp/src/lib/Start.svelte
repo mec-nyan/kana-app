@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../app.scss';
 </script>
 
 <div><a href="/game">Start</a></div>
@@ -16,16 +16,15 @@
 		padding: 1rem;
 
 		background: var(--mantle);
-		color: var(--lavender);
-		text-shadow: 0px 0px 6px var(--lavender), 0px 0px 12px var(--lavender);
+		color: var(--yellow);
 
-		font-family: "Hack", monospace;
+		font-family: 'Hack', monospace;
 		font-size: 1.25rem;
 		text-decoration: none;
 
-		cursor: pointer;
+		border: 1px solid var(--surface1);
 
-		box-shadow: 0px 0px 6px var(--lavender);
+		cursor: pointer;
 
 		border-radius: 8px;
 		/* border: 1px solid var(--crust); */

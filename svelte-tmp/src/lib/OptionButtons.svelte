@@ -46,9 +46,8 @@
 		justify-content: center;
 		align-items: center;
 
-		background: linear-gradient(to bottom, var(--mantle), var(--crust));
-		color: var(--lavender);
-		text-shadow: 0px 0px 6px var(--lavender), 0px 0px 12px var(--lavender);
+		background: var(--mantle);
+		color: var(--blue);
 
 		height: 100%;
 		width: 100%;

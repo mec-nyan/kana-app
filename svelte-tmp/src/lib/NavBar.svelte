@@ -1,4 +1,5 @@
 <script lang="ts">
+import '../app.scss';
 	let { title } = $props();
 </script>
 

@@ -13,11 +13,8 @@
 		justify-content: space-between;
 		align-items: center;
 
-		background: linear-gradient(
-			to bottom,
-			var(--base),
-			var(--mantle)
-		);
+		background: var(--base);
+		color: var(--text);
 
 		height: 100dvh;
 		width: 100dvw;
